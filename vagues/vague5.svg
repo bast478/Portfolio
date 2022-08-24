@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1440 320"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="vague5.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs7" />
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.4847222"
+     inkscape:cx="41.421889"
+     inkscape:cy="264.35921"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3"
+     inkscape:lockguides="false" />
+  <path
+     id="sineWave"
+     fill="#0099ff"
+     fill-opacity="0.2"
+     d="m 1440,160.642 c -212.9524,-293.05058 -402.0444,-111.893916 -740,1.6e-4 -40.45943,13.39575 -534.92478,231.42798 -700.00000061462355,0 v 360 H 1440"
+     sodipodi:nodetypes="csccc" />
+</svg>
