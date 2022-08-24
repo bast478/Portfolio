@@ -12,12 +12,12 @@ const svgNS = "http://www.w3.org/2000/svg";
 const gridCards = document.querySelectorAll('.grid-card');
 
 /*conteneur*/
-const menuGridCards = document.createElement('div');
-menuGridCards.classList.add('menu-grid-cards');
+const menuGridCard = document.createElement('div');
+menuGridCard.classList.add('menu-grid-cards');
 
 /*sous conteneur*/
-const subMenuGridCards = document.createElement('div');
-subMenuGridCards.classList.add('sub-menu-grid-cards');
+const submenuGridCard = document.createElement('div');
+submenuGridCard.classList.add('sub-menu-grid-cards');
 
 /*croix*/
 const cross = document.createElementNS(svgNS, "svg");
@@ -36,9 +36,9 @@ const linkGithub = document.createElement('a');
 linkGithub.target = '_blank';
 linkGithub.textContent = 'Github';
 
-/*mettre les éléments à menuGridCards*/
-subMenuGridCards.append(cross, linkPictures, linkGithub);
-menuGridCards.appendChild(subMenuGridCards);
+/*mettre les éléments à menuGridCard*/
+submenuGridCard.append(cross, linkPictures, linkGithub);
+menuGridCard.appendChild(submenuGridCard);
 
 /*créer le modal des cartes*/
 const modal = document.createElement('div');
@@ -49,16 +49,26 @@ modal.appendChild(modalContent);
 
 /*fermer la carte précedente quand on clique sur la nouvelle*/
 let prevCard;
-let prevMenuGridCards;
+let prevmenuGridCard;
 
 /*quitter les réalisations au click*/
-let modalIsOpen = 0;
-let modalContentImgs, targetGridCards;
-//subMenuGridCards linkPictures linkGithub
+let modalIsOpen = false;
+let modalContentImgs = {};
+let targetGridCards;
+let datasetName;
 
 /************************************************************************/
 
-
+fetch('site-pictures.json')
+.then (response => response.json())
+.then(data => {
+    gridCards.forEach(item => {
+        datasetName = item.dataset.name;
+        if (datasetName !== undefined) {
+            modalContentImgs[datasetName] = data[datasetName];
+        }
+    }); 
+})
 
 /************************************************************/
 
@@ -66,55 +76,51 @@ gridCards.forEach(item => {
     item.addEventListener('click', function(e) {
         e.preventDefault();
         /*fermer la carte précédente*/
-        if (prevMenuGridCards !== undefined) {
-            prevMenuGridCards.replaceWith(prevCard);
+        if (prevmenuGridCard !== undefined) {
+            prevmenuGridCard.replaceWith(prevCard);
         }
         /*variables*/
         targetGridCards = e.target;
         prevCard = this;
-        prevMenuGridCards = menuGridCards;
+        prevmenuGridCard = menuGridCard;
+        datasetName = this.dataset.name;
         /*insertion et modification du lien Github*/
-        this.parentNode.insertBefore(menuGridCards, this);
-        menuGridCards.appendChild(this);
+        this.parentNode.insertBefore(menuGridCard, this);
+        menuGridCard.appendChild(this);
         linkGithub.href = this.href;
         /*open modal*/
-        modalContentImgs = [];
-        const datasetName = this.dataset.name;
         linkPictures.onclick = (e) => {
             e.preventDefault()
-            modalIsOpen = 1;
-            menuGridCards.appendChild(modal);
-            fetch('site-pictures.json')
-            .then (response => response.json())
-            .then(data => {
-                const arrayLinks = data[datasetName];
-                for (let x of arrayLinks) {
+            if (datasetName !== undefined) {
+                modalIsOpen = true;
+                menuGridCard.appendChild(modal);
+                for (let x of modalContentImgs[datasetName]) {
                     let img = document.createElement('img');
                     img.src = x;
                     img.alt = 'Image du site : ' + datasetName;
                     modalContent.appendChild(img);
-                    modalContentImgs.push(img);
                 }
-            })
+            }
         };
     });
 });
 
 window.addEventListener('click', function (e) {
-    if (modalIsOpen === 1) {
-        for (let img of modalContentImgs) {
-            if (e.target !== img) {
-                prevMenuGridCards.replaceWith(prevCard);
-                modalIsOpen = 0;
-                prevMenuGridCards = undefined;
-                for (let img of modalContentImgs) {
+    if (modalIsOpen === true) {
+        const imgModalContent = document.querySelectorAll('.modal-content-pic-grid-card img');
+        for (let img of imgModalContent) {
+            if (e.target !== linkPictures && e.target !== img) {
+                prevmenuGridCard.replaceWith(prevCard);
+                modalIsOpen = false;
+                prevmenuGridCard = undefined;
+                for (let img of imgModalContent) {
                     modalContent.removeChild(img);
                 }
-                menuGridCards.removeChild(modal);
+                menuGridCard.removeChild(modal);
             }
         }
-    } else if (prevMenuGridCards !== undefined && e.target !== targetGridCards && e.target !== subMenuGridCards && e.target !== prevMenuGridCards && e.target !== linkPictures && e.target !== linkGithub) {
-         prevMenuGridCards.replaceWith(prevCard);
-         prevMenuGridCards = undefined;
+    } else if (prevmenuGridCard !== undefined && e.target !== targetGridCards && e.target !== submenuGridCard && e.target !== prevmenuGridCard && e.target !== linkPictures && e.target !== linkGithub) {
+         prevmenuGridCard.replaceWith(prevCard);
+         prevmenuGridCard = undefined;
     }
 });
