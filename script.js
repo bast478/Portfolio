@@ -26,12 +26,13 @@ const path = document.createElementNS(svgNS, "path");
 setAttributes(path, {"class": "path", "d": "M 13.6,1.01 12.59,0 6.8,5.79 1.01,0 0,1.01 5.79,6.8 0,12.59 1.01,13.6 6.8,7.81 12.59,13.6 13.6,12.59 7.81,6.8 Z"});
 cross.appendChild(path);
 
-/*images*/
+/*Lien images*/
 const linkPictures = document.createElement('a');
+linkPictures.classList.add('link-pictures');
 linkPictures.href = '#';
-linkPictures.textContent = 'Description et images';
+linkPictures.textContent = 'Description et\nimages';
 
-/*github*/
+/*Lien github*/
 const linkGithub = document.createElement('a');
 linkGithub.target = '_blank';
 linkGithub.textContent = 'Github';
@@ -71,10 +72,6 @@ fetch('site-pictures.json')
 gridCards.forEach(item => {
     item.addEventListener('click', function(e) {
         e.preventDefault();
-        /*fermer la carte précédente*/
-        if (prevmenuGridCard !== undefined) {
-            prevmenuGridCard.replaceWith(prevCard);
-        }
         /*variables*/
         targetGridCards = e.target;
         prevCard = this;
@@ -104,20 +101,23 @@ gridCards.forEach(item => {
 
 window.addEventListener('click', function (e) {
     if (modalIsOpen === true) {
-        modalContentImgs.forEach(img => {
-            if (e.target !== linkPictures && e.target !== img) {
-                prevmenuGridCard.replaceWith(prevCard);
-                modalIsOpen = false;
-                prevmenuGridCard = undefined;
-                for (let img of modalContentImgs) {
-                    modalContent.removeChild(img);
-                }
-                modalContentImgs = [];
-                menuGridCard.removeChild(modal);
+        function clickOutsideImg(img) {
+            return e.target !== img;
+        }
+        let result = modalContentImgs.every(clickOutsideImg);
+        if (result) {
+            prevmenuGridCard.replaceWith(prevCard);
+            modalIsOpen = false;
+            //prevmenuGridCard = undefined;
+            for (let img of modalContentImgs) {
+                modalContent.removeChild(img);
             }
-        });
+            modalContentImgs = [];
+            menuGridCard.removeChild(modal);
+        }
     } else if (prevmenuGridCard !== undefined && e.target !== targetGridCards && e.target !== submenuGridCard && e.target !== prevmenuGridCard && e.target !== linkPictures && e.target !== linkGithub) {
-         prevmenuGridCard.replaceWith(prevCard);
-         prevmenuGridCard = undefined;
+        console.log('dddddddddddddddd');
+        prevmenuGridCard.replaceWith(prevCard);
+        //prevmenuGridCard = undefined;
     }
-});
+}, true);

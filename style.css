@@ -108,7 +108,7 @@ h2 {
   height: 100%;
   border-radius: 15px;
 }
-
+/*au clique*/
 .menu-grid-cards {
   position: relative;
 }
@@ -132,7 +132,7 @@ h2 {
   height: 20px;
   fill: #fff;
   position: absolute;
-  top: 5px;
+  top: 7px;
   right: 10px;
   cursor: pointer;
 }
@@ -143,6 +143,11 @@ h2 {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+.link-pictures {
+  white-space: pre;
+  text-align: center;
+}
+/*au clique sur le lien description et images*/
 .modal-pic-grid-card {
   position: fixed;
   height: 100%;
@@ -160,6 +165,7 @@ h2 {
 
 .modal-content-pic-grid-card img{
   width: 200px;
+  height: auto;
 }
 /*********************/
 #vagues {
