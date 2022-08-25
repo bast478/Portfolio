@@ -48,14 +48,10 @@ modalContent.classList.add('modal-content-pic-grid-card');
 modal.appendChild(modalContent);
 
 /*fermer la carte précedente quand on clique sur la nouvelle*/
-let prevCard;
-let prevmenuGridCard;
+let prevCard, prevmenuGridCard;
 
 /*quitter les réalisations au click*/
-let modalIsOpen = false;
-let modalContentImgs = {};
-let targetGridCards;
-let datasetName;
+let modalIsOpen = false, modalContentImgsLinks = {}, modalContentImgs = [], targetGridCards, datasetName;
 
 /************************************************************************/
 
@@ -65,7 +61,7 @@ fetch('site-pictures.json')
     gridCards.forEach(item => {
         datasetName = item.dataset.name;
         if (datasetName !== undefined) {
-            modalContentImgs[datasetName] = data[datasetName];
+            modalContentImgsLinks[datasetName] = data[datasetName];
         }
     }); 
 })
@@ -94,11 +90,12 @@ gridCards.forEach(item => {
             if (datasetName !== undefined) {
                 modalIsOpen = true;
                 menuGridCard.appendChild(modal);
-                for (let x of modalContentImgs[datasetName]) {
+                for (let x of modalContentImgsLinks[datasetName]) {
                     let img = document.createElement('img');
                     img.src = x;
                     img.alt = 'Image du site : ' + datasetName;
                     modalContent.appendChild(img);
+                    modalContentImgs.push(img);
                 }
             }
         };
@@ -107,18 +104,18 @@ gridCards.forEach(item => {
 
 window.addEventListener('click', function (e) {
     if (modalIsOpen === true) {
-        const imgModalContent = document.querySelectorAll('.modal-content-pic-grid-card img');
-        for (let img of imgModalContent) {
+        modalContentImgs.forEach(img => {
             if (e.target !== linkPictures && e.target !== img) {
                 prevmenuGridCard.replaceWith(prevCard);
                 modalIsOpen = false;
                 prevmenuGridCard = undefined;
-                for (let img of imgModalContent) {
+                for (let img of modalContentImgs) {
                     modalContent.removeChild(img);
                 }
+                modalContentImgs = [];
                 menuGridCard.removeChild(modal);
             }
-        }
+        });
     } else if (prevmenuGridCard !== undefined && e.target !== targetGridCards && e.target !== submenuGridCard && e.target !== prevmenuGridCard && e.target !== linkPictures && e.target !== linkGithub) {
          prevmenuGridCard.replaceWith(prevCard);
          prevmenuGridCard = undefined;
