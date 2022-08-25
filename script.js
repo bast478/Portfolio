@@ -29,7 +29,7 @@ cross.appendChild(path);
 /*images*/
 const linkPictures = document.createElement('a');
 linkPictures.href = '#';
-linkPictures.textContent = 'Images';
+linkPictures.textContent = 'Description et images';
 
 /*github*/
 const linkGithub = document.createElement('a');
