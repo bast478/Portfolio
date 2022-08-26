@@ -1,9 +1,16 @@
 {
-    "Gouffre": [
-        "pictures/Gouffre/Gouffre-1-desktop.png",
-        "pictures/Gouffre/Gouffre-2-desktop.png",
-        "pictures/Gouffre/Gouffre-3-desktop.png",
-        "pictures/Gouffre/Gouffre-4-desktop.png",
-        "pictures/Gouffre/Gouffre-5-desktop.png"
-    ]
+    "Gouffre": {
+        "Gouffre-description": [
+            " : Gouffre de Poudrey",
+            " : choisir un sujet touristique ou artistique existant et le valoriser.",
+            " : HTML5, CSS3, JavaScript."
+        ],
+        "Gouffre-links": [
+            "pictures/Gouffre/Gouffre-1-desktop.png",
+            "pictures/Gouffre/Gouffre-2-desktop.png",
+            "pictures/Gouffre/Gouffre-3-desktop.png",
+            "pictures/Gouffre/Gouffre-4-desktop.png",
+            "pictures/Gouffre/Gouffre-5-desktop.png"
+        ]
+    }
 }

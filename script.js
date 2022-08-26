@@ -48,21 +48,35 @@ const modalContent = document.createElement('div');
 modalContent.classList.add('modal-content-pic-grid-card');
 modal.appendChild(modalContent);
 
-/*fermer la carte précedente quand on clique sur la nouvelle*/
+/*texte du modal*/
+let divModalDescription, contentPDescription;
+const pSujetReal = document.createElement('p'), pObjectifReal = document.createElement('p'), pTechnologiesReal = document.createElement('p');
+const spanSujet = document.createElement('span'), spanObjectif = document.createElement('span'), spanTechno = document.createElement('span');
+pSujetReal.appendChild(spanSujet);
+pObjectifReal.appendChild(spanObjectif);
+pTechnologiesReal.appendChild(spanTechno);
+spanSujet.textContent = 'Sujet';
+spanObjectif.textContent = 'Objectif';
+spanTechno.textContent = 'Technologies utilisées';
+
+/*remplacer le menu par la carte quand on quitte*/
 let prevCard, prevmenuGridCard;
 
-/*quitter les réalisations au click*/
-let modalIsOpen = false, modalContentImgsLinks = {}, modalContentImgs = [], targetGridCards, datasetName;
+/*modal/target/dataset*/
+const JSONDescriptions = {}, JSONImgsLinks = {};
+let modalIsOpen = false, modalContentDivAndImgs = [], targetGridCards, datasetName;
 
 /************************************************************************/
 
 fetch('site-pictures.json')
 .then (response => response.json())
 .then(data => {
+    console.log(data['Gouffre']['Gouffre-description']);
     gridCards.forEach(item => {
         datasetName = item.dataset.name;
         if (datasetName !== undefined) {
-            modalContentImgsLinks[datasetName] = data[datasetName];
+            JSONDescriptions[datasetName] = data[datasetName][datasetName+'-description'];
+            JSONImgsLinks[datasetName] = data[datasetName][datasetName+'-links'];
         }
     }); 
 })
@@ -86,36 +100,50 @@ gridCards.forEach(item => {
             e.preventDefault()
             if (datasetName !== undefined) {
                 modalIsOpen = true;
+                divModalDescription = document.createElement('div');
+                contentPDescription = [document.createTextNode(JSONDescriptions[datasetName][0]), document.createTextNode(JSONDescriptions[datasetName][1]), document.createTextNode(JSONDescriptions[datasetName][2])];
+                pSujetReal.appendChild(contentPDescription[0]);
+                pObjectifReal.appendChild(contentPDescription[1]);
+                pTechnologiesReal.appendChild(contentPDescription[2]);
+                divModalDescription.append(pSujetReal, pObjectifReal, pTechnologiesReal);
+                modalContent.appendChild(divModalDescription);
+                modalContentDivAndImgs.push(divModalDescription);
                 menuGridCard.appendChild(modal);
-                for (let x of modalContentImgsLinks[datasetName]) {
+                for (let x of JSONImgsLinks[datasetName]) {
                     let img = document.createElement('img');
                     img.src = x;
                     img.alt = 'Image du site : ' + datasetName;
                     modalContent.appendChild(img);
-                    modalContentImgs.push(img);
+                    modalContentDivAndImgs.push(img);
                 }
             }
         };
     });
 });
 
+//Si je clique
 window.addEventListener('click', function (e) {
-    if (modalIsOpen === true) {
+    console.log(contentPDescription);
+    const eTarget = e.target;
+    if (modalIsOpen === true && eTarget !== divModalDescription && eTarget !== pSujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno) {
         function clickOutsideImg(img) {
-            return e.target !== img;
+            return eTarget !== img;
         }
-        let result = modalContentImgs.every(clickOutsideImg);
+        let result = modalContentDivAndImgs.every(clickOutsideImg);
         if (result) {
-            prevmenuGridCard.replaceWith(prevCard);
-            modalIsOpen = false;
-            prevmenuGridCard = undefined;
-            for (let img of modalContentImgs) {
-                modalContent.removeChild(img);
+            //prevmenuGridCard.replaceWith(prevCard);
+            //prevmenuGridCard = undefined;
+            pSujetReal.removeChild(contentPDescription[0]);
+            pObjectifReal.removeChild(contentPDescription[1]);
+            pTechnologiesReal.removeChild(contentPDescription[2]);
+            for (let el of modalContentDivAndImgs) {
+                modalContent.removeChild(el);
             }
-            modalContentImgs = [];
+            modalContentDivAndImgs = [];
             menuGridCard.removeChild(modal);
+            modalIsOpen = false;
         }
-    } else if (prevmenuGridCard !== undefined && e.target !== targetGridCards && e.target !== submenuGridCard && e.target !== prevmenuGridCard && e.target !== linkPictures && e.target !== linkGithub) {
+    } else if (prevmenuGridCard !== undefined && eTarget !== targetGridCards && eTarget !== submenuGridCard && eTarget !== prevmenuGridCard && eTarget !== linkPictures && modalIsOpen === false && eTarget !== linkGithub) {
         prevmenuGridCard.replaceWith(prevCard);
         prevmenuGridCard = undefined;
     }

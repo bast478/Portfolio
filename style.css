@@ -160,12 +160,30 @@ h2 {
 
 .modal-content-pic-grid-card {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
+  padding: 1.25rem;
 }
 
-.modal-content-pic-grid-card img{
-  width: 200px;
+.modal-content-pic-grid-card img {
+  width: 500px;
   height: auto;
+  object-fit: scale-down;
+}
+
+.modal-content-pic-grid-card p {
+  color: #fff;
+  white-space: pre-wrap;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.5625rem;
+  width: 500px;
+}
+
+.modal-content-pic-grid-card span {
+  font-size: 27px;
+  color: bisque;
 }
 /*********************/
 #vagues {
