@@ -108,7 +108,7 @@ window.addEventListener('click', function (e) {
         if (result) {
             prevmenuGridCard.replaceWith(prevCard);
             modalIsOpen = false;
-            //prevmenuGridCard = undefined;
+            prevmenuGridCard = undefined;
             for (let img of modalContentImgs) {
                 modalContent.removeChild(img);
             }
@@ -116,8 +116,7 @@ window.addEventListener('click', function (e) {
             menuGridCard.removeChild(modal);
         }
     } else if (prevmenuGridCard !== undefined && e.target !== targetGridCards && e.target !== submenuGridCard && e.target !== prevmenuGridCard && e.target !== linkPictures && e.target !== linkGithub) {
-        console.log('dddddddddddddddd');
         prevmenuGridCard.replaceWith(prevCard);
-        //prevmenuGridCard = undefined;
+        prevmenuGridCard = undefined;
     }
 }, true);
