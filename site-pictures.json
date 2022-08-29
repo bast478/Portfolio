@@ -5,12 +5,21 @@
             " : choisir un sujet touristique ou artistique existant et le valoriser.",
             " : HTML5, CSS3, JavaScript."
         ],
-        "Gouffre-links": [
-            "pictures/Gouffre/Gouffre-1-desktop.png",
-            "pictures/Gouffre/Gouffre-2-desktop.png",
-            "pictures/Gouffre/Gouffre-3-desktop.png",
-            "pictures/Gouffre/Gouffre-4-desktop.png",
-            "pictures/Gouffre/Gouffre-5-desktop.png"
-        ]
+        "Gouffre-links": {
+            "desktop": [
+                "pictures/Gouffre/desktop/Gouffre-1-desktop.webp",
+                "pictures/Gouffre/desktop/Gouffre-2-desktop.webp",
+                "pictures/Gouffre/desktop/Gouffre-3-desktop.webp",
+                "pictures/Gouffre/desktop/Gouffre-4-desktop.webp",
+                "pictures/Gouffre/desktop/Gouffre-5-desktop.webp",
+                "pictures/Gouffre/desktop/Gouffre-6-desktop.webp"
+            ],
+            "tablet": [
+                "pictures/Gouffre/tablet/Gouffre-1-tablet.webp",
+                "pictures/Gouffre/tablet/Gouffre-2-tablet.webp",
+                "pictures/Gouffre/tablet/Gouffre-3-tablet.webp",
+                "pictures/Gouffre/tablet/Gouffre-4-tablet.webp"
+            ]
+        }
     }
 }
