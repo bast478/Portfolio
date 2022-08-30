@@ -31,7 +31,43 @@ const linkPictures = document.createElement('a');
 linkPictures.classList.add('link-pictures');
 linkPictures.href = '#';
 linkPictures.textContent = 'Description et\nimages';
-
+linkPictures.addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log(datasetName);
+    if (datasetName !== undefined) {
+        modalIsOpen = true;
+        contentAllPDescription = [document.createTextNode(JSONDescriptions[datasetName][0]), document.createTextNode(JSONDescriptions[datasetName][1]), document.createTextNode(JSONDescriptions[datasetName][2])];
+        pSujetReal.appendChild(contentAllPDescription[0]);
+        pObjectifReal.appendChild(contentAllPDescription[1]);
+        pTechnologiesReal.appendChild(contentAllPDescription[2]);
+        menuGridCard.appendChild(modal);
+        let linksOfPics;
+        if (window.innerWidth < 100) {
+            linksOfPics = ['mobile'];
+        } else {
+            linksOfPics = ['desktop', 'tablet'];
+        }
+        for (let i=0; i<linksOfPics.length; i++){
+            for (let x of JSONImgsLinks[datasetName][linksOfPics[i]]) {
+                let img = document.createElement('img');
+                img.src = x;
+                img.alt = 'Image du site : ' + datasetName;
+                modalContent.appendChild(img);
+                modalContentImgs.push(img);
+                img.onclick = e => {
+                    console.log('sjsjs');
+                    if (allowClickChangeModalImg === true) {
+                        imgModalClicked = e.target;
+                        modal.classList.add('img-clicked');
+                        imgModalClicked.classList.add('img-clicked');
+                    } else {
+                        allowClickChangeModalImg = true;
+                    }
+                };
+            }
+        }
+    }
+});
 /*Lien github*/
 const linkGithub = document.createElement('a');
 linkGithub.target = '_blank';
@@ -68,7 +104,7 @@ const JSONDescriptions = {}, JSONImgsLinks = {};
 let modalIsOpen = false, modalContentImgs = [], targetGridCards, datasetName;
 
 /*img clicked modal*/
-let imgClicked = null, imgClickedActive = false;
+let imgModalClicked = null, allowClickChangeModalImg = true;
 
 /************************************************************************/
 
@@ -80,8 +116,6 @@ fetch('site-pictures.json')
         if (datasetName !== undefined) {
             JSONDescriptions[datasetName] = data[datasetName][datasetName+'-description'];
             JSONImgsLinks[datasetName] = data[datasetName][datasetName+'-links'];
-            console.log(JSONImgsLinks);
-            console.log(JSONImgsLinks[datasetName]);
         }
     }); 
 })
@@ -101,53 +135,24 @@ gridCards.forEach(item => {
         menuGridCard.appendChild(this);
         linkGithub.href = this.href;
         /*open modal*/
-        linkPictures.onclick = (e) => {
-            e.preventDefault()
-            if (datasetName !== undefined) {
-                modalIsOpen = true;
-                contentAllPDescription = [document.createTextNode(JSONDescriptions[datasetName][0]), document.createTextNode(JSONDescriptions[datasetName][1]), document.createTextNode(JSONDescriptions[datasetName][2])];
-                pSujetReal.appendChild(contentAllPDescription[0]);
-                pObjectifReal.appendChild(contentAllPDescription[1]);
-                pTechnologiesReal.appendChild(contentAllPDescription[2]);
-                menuGridCard.appendChild(modal);
-                let linksOfPics;
-                if (window.innerWidth < 100) {
-                    linksOfPics = ['mobile'];
-                } else {
-                    linksOfPics = ['desktop', 'tablet', 'mobile'];
-                }
-                for (let i=0; i<linksOfPics.length; i++){
-                    for (let x of JSONImgsLinks[datasetName][linksOfPics[i]]) {
-                        console.log(x);
-                        let img = document.createElement('img');
-                        img.src = x;
-                        img.alt = 'Image du site : ' + datasetName;
-                        modalContent.appendChild(img);
-                        modalContentImgs.push(img);
-                        img.onclick = e => {
-                            if (imgClickedActive === false) {
-                                imgClicked = e.target;
-                                modal.classList.add('img-clicked');
-                                imgClicked.classList.add('img-clicked');
-                                imgClickedActive = true;
-                            } else {
-                                imgClickedActive = false;
-                            }
-                        };
-                    }
-                }
-            }
-        };
     });
 });
 
 //Si je clique
 window.addEventListener('click', function (e) {
+    console.log(e.target);
     const eTarget = e.target;
-    console.log(eTarget);
-    if (imgClickedActive === true && eTarget !== imgClicked) {
-        imgClicked.classList.remove('img-clicked');
-        modal.classList.remove('img-clicked');
+    if (imgModalClicked !== null && eTarget !== imgModalClicked) {
+        if (eTarget === modalContent || eTarget === modal || eTarget === pSujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalDescription) {
+            imgModalClicked.classList.remove('img-clicked');
+            modal.classList.remove('img-clicked');
+            imgModalClicked = null;
+        } else {
+            imgModalClicked.classList.remove('img-clicked');
+            modal.classList.remove('img-clicked');
+            imgModalClicked = null;
+            allowClickChangeModalImg = false;
+        }
     } else if (modalIsOpen === true && eTarget !== divModalDescription && eTarget !== pSujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno) {
         function clickOutsideImg(img) {
             return eTarget !== img;

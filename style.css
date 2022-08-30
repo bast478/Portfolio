@@ -159,7 +159,7 @@ h2 {
 }
 
 .modal-pic-grid-card.img-clicked {
-  overflow: initial;
+  overflow: visible;
 }
 
 .modal-content-pic-grid-card {
