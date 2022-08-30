@@ -19,6 +19,13 @@
                 "pictures/Gouffre/tablet/Gouffre-2-tablet.webp",
                 "pictures/Gouffre/tablet/Gouffre-3-tablet.webp",
                 "pictures/Gouffre/tablet/Gouffre-4-tablet.webp"
+            ],
+            "mobile": [
+                "pictures/Gouffre/mobile/Gouffre-1-mobile.webp",
+                "pictures/Gouffre/mobile/Gouffre-2-mobile.webp",
+                "pictures/Gouffre/mobile/Gouffre-3-mobile.webp",
+                "pictures/Gouffre/mobile/Gouffre-4-mobile.webp",
+                "pictures/Gouffre/mobile/Gouffre-5-mobile.webp"
             ]
         }
     }

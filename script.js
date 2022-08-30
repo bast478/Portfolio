@@ -31,43 +31,7 @@ const linkPictures = document.createElement('a');
 linkPictures.classList.add('link-pictures');
 linkPictures.href = '#';
 linkPictures.textContent = 'Description et\nimages';
-linkPictures.addEventListener('click', function(e) {
-    e.preventDefault();
-    console.log(datasetName);
-    if (datasetName !== undefined) {
-        modalIsOpen = true;
-        contentAllPDescription = [document.createTextNode(JSONDescriptions[datasetName][0]), document.createTextNode(JSONDescriptions[datasetName][1]), document.createTextNode(JSONDescriptions[datasetName][2])];
-        pSujetReal.appendChild(contentAllPDescription[0]);
-        pObjectifReal.appendChild(contentAllPDescription[1]);
-        pTechnologiesReal.appendChild(contentAllPDescription[2]);
-        menuGridCard.appendChild(modal);
-        let linksOfPics;
-        if (window.innerWidth < 100) {
-            linksOfPics = ['mobile'];
-        } else {
-            linksOfPics = ['desktop', 'tablet'];
-        }
-        for (let i=0; i<linksOfPics.length; i++){
-            for (let x of JSONImgsLinks[datasetName][linksOfPics[i]]) {
-                let img = document.createElement('img');
-                img.src = x;
-                img.alt = 'Image du site : ' + datasetName;
-                modalContent.appendChild(img);
-                modalContentImgs.push(img);
-                img.onclick = e => {
-                    console.log('sjsjs');
-                    if (allowClickChangeModalImg === true) {
-                        imgModalClicked = e.target;
-                        modal.classList.add('img-clicked');
-                        imgModalClicked.classList.add('img-clicked');
-                    } else {
-                        allowClickChangeModalImg = true;
-                    }
-                };
-            }
-        }
-    }
-});
+
 /*Lien github*/
 const linkGithub = document.createElement('a');
 linkGithub.target = '_blank';
@@ -86,13 +50,15 @@ modal.appendChild(modalContent);
 
 /*texte du modal*/
 let contentAllPDescription;
-const divModalDescription = document.createElement('div'), pSujetReal = document.createElement('p'), pObjectifReal = document.createElement('p'), pTechnologiesReal = document.createElement('p'), spanSujet = document.createElement('span'), spanObjectif = document.createElement('span'), spanTechno = document.createElement('span');
-divModalDescription.classList.add('modal-content-description');
-pSujetReal.appendChild(spanSujet);
+const divTopModalContent = document.createElement('div'), divModalContentDescription = document.createElement('div'), h3SujetReal = document.createElement('h3'), pObjectifReal = document.createElement('p'), pTechnologiesReal = document.createElement('p'), spanSujet = document.createElement('span'), spanObjectif = document.createElement('span'), spanTechno = document.createElement('span');
+divModalContentDescription.classList.add('modal-content-description');
+divTopModalContent.classList.add('modal-content-top-div');
+h3SujetReal.appendChild(spanSujet);
 pObjectifReal.appendChild(spanObjectif);
 pTechnologiesReal.appendChild(spanTechno);
-divModalDescription.append(pSujetReal, pObjectifReal, pTechnologiesReal);
-modalContent.appendChild(divModalDescription);
+divModalContentDescription.append(h3SujetReal, pObjectifReal, pTechnologiesReal);
+divTopModalContent.appendChild(divModalContentDescription);
+modalContent.appendChild(divTopModalContent);
 spanSujet.textContent = 'Sujet';
 spanObjectif.textContent = 'Objectif';
 spanTechno.textContent = 'Technologies utilisées';
@@ -138,12 +104,53 @@ gridCards.forEach(item => {
     });
 });
 
+linkPictures.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (datasetName !== undefined) {
+        modalIsOpen = true;
+        contentAllPDescription = [document.createTextNode(JSONDescriptions[datasetName][0]), document.createTextNode(JSONDescriptions[datasetName][1]), document.createTextNode(JSONDescriptions[datasetName][2])];
+        h3SujetReal.appendChild(contentAllPDescription[0]);
+        pObjectifReal.appendChild(contentAllPDescription[1]);
+        pTechnologiesReal.appendChild(contentAllPDescription[2]);
+        menuGridCard.appendChild(modal);
+        let linksOfPics;
+        if (window.innerWidth < 100) {
+            linksOfPics = ['mobile'];
+        } else {
+            linksOfPics = ['desktop', 'tablet', 'mobile'];
+        }
+        for (let i = 0; i < linksOfPics.length; i++) {
+            let h4 = document.createElement('h4');
+            h4.textContent = linksOfPics[i];
+            if (i === 0) {
+                divTopModalContent.appendChild(h4);
+            } else {
+                modalContent.appendChild(h4);
+            }
+            for (let x of JSONImgsLinks[datasetName][linksOfPics[i]]) {
+                let img = document.createElement('img');
+                img.src = x;
+                img.alt = 'Image du site : ' + datasetName;
+                modalContent.appendChild(img);
+                modalContentImgs.push(img);
+                img.onclick = e => {
+                    if (allowClickChangeModalImg === true) {
+                        imgModalClicked = e.target;
+                        imgModalClicked.classList.add('img-clicked');
+                    } else {
+                        allowClickChangeModalImg = true;
+                    }
+                };
+            }
+        }
+    }
+});
+
 //Si je clique
 window.addEventListener('click', function (e) {
-    console.log(e.target);
     const eTarget = e.target;
     if (imgModalClicked !== null && eTarget !== imgModalClicked) {
-        if (eTarget === modalContent || eTarget === modal || eTarget === pSujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalDescription) {
+        if (eTarget === modalContent || eTarget === modal || eTarget === h3SujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalContentDescription) {
             imgModalClicked.classList.remove('img-clicked');
             modal.classList.remove('img-clicked');
             imgModalClicked = null;
@@ -153,13 +160,13 @@ window.addEventListener('click', function (e) {
             imgModalClicked = null;
             allowClickChangeModalImg = false;
         }
-    } else if (modalIsOpen === true && eTarget !== divModalDescription && eTarget !== pSujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno) {
+    } else if (modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno) {
         function clickOutsideImg(img) {
             return eTarget !== img;
         }
         let result = modalContentImgs.every(clickOutsideImg);
         if (result) {
-            pSujetReal.removeChild(contentAllPDescription[0]);
+            h3SujetReal.removeChild(contentAllPDescription[0]);
             pObjectifReal.removeChild(contentAllPDescription[1]);
             pTechnologiesReal.removeChild(contentAllPDescription[2]);
             for (let el of modalContentImgs) {
