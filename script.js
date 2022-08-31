@@ -49,25 +49,40 @@ modalContent.classList.add('modal-content-pic-grid-card');
 modal.appendChild(modalContent);
 
 /*texte du modal*/
-let contentAllPDescription;
-const divTopModalContent = document.createElement('div'), divModalContentDescription = document.createElement('div'), h3SujetReal = document.createElement('h3'), pObjectifReal = document.createElement('p'), pTechnologiesReal = document.createElement('p'), spanSujet = document.createElement('span'), spanObjectif = document.createElement('span'), spanTechno = document.createElement('span');
+let contentModalDescription = [];
+const divTopModalContent = document.createElement('div'),
+    divModalContentDescription = document.createElement('div'),
+    h3SujetReal = document.createElement('h3'),
+    pObjectifReal = document.createElement('p'),
+    pTechnologiesReal = document.createElement('p'),
+    spanSujet = document.createElement('span'),
+    spanObjectif = document.createElement('span'),
+    spanTechno = document.createElement('span');
 divModalContentDescription.classList.add('modal-content-description');
 divTopModalContent.classList.add('modal-content-top-div');
-h3SujetReal.appendChild(spanSujet);
-pObjectifReal.appendChild(spanObjectif);
-pTechnologiesReal.appendChild(spanTechno);
+h3SujetReal.append(spanSujet);
+pObjectifReal.append(spanObjectif);
+pTechnologiesReal.append(spanTechno);
 divModalContentDescription.append(h3SujetReal, pObjectifReal, pTechnologiesReal);
+for (let x of divModalContentDescription.children) {
+    const colon = document.createElement('span');
+    colon.textContent = ' : ';
+    x.appendChild(colon);
+}
 divTopModalContent.appendChild(divModalContentDescription);
 modalContent.appendChild(divTopModalContent);
 spanSujet.textContent = 'Sujet';
+spanSujet.classList.add('modal-content-description-span-titles');
 spanObjectif.textContent = 'Objectif';
+spanObjectif.classList.add('modal-content-description-span-titles');
 spanTechno.textContent = 'Technologies utilisées';
+spanTechno.classList.add('modal-content-description-span-titles');
 
 /*remplacer le menu par la carte quand on quitte*/
 let prevCard, prevmenuGridCard = null;
-/*modal/target/dataset*/
-const JSONDescriptions = {}, JSONImgsLinks = {};
-let modalIsOpen = false, modalContentImgs = [], targetGridCards, datasetName;
+/*modal/first h4 top modal div/target/dataset*/
+const JSONDescriptions = {}, JSONImgsLinks = {}, h4DivTopModalContent = document.createElement('h4');
+let modalIsOpen = false, modalContentImgsH4 = [], targetGridCards, datasetName;
 
 /*img clicked modal*/
 let imgModalClicked = null, allowClickChangeModalImg = true;
@@ -100,7 +115,6 @@ gridCards.forEach(item => {
         this.parentNode.insertBefore(menuGridCard, this);
         menuGridCard.appendChild(this);
         linkGithub.href = this.href;
-        /*open modal*/
     });
 });
 
@@ -108,31 +122,38 @@ linkPictures.addEventListener('click', function(e) {
     e.preventDefault();
     if (datasetName !== undefined) {
         modalIsOpen = true;
-        contentAllPDescription = [document.createTextNode(JSONDescriptions[datasetName][0]), document.createTextNode(JSONDescriptions[datasetName][1]), document.createTextNode(JSONDescriptions[datasetName][2])];
-        h3SujetReal.appendChild(contentAllPDescription[0]);
-        pObjectifReal.appendChild(contentAllPDescription[1]);
-        pTechnologiesReal.appendChild(contentAllPDescription[2]);
+        for (let x of JSONDescriptions[datasetName]) {
+            const spanDescr = document.createElement('span');
+            spanDescr.textContent = x;
+            contentModalDescription.push(spanDescr);
+        }
+        h3SujetReal.appendChild(contentModalDescription[0]);
+        contentModalDescription[0].classList.add('real-subj-title');
+        pObjectifReal.appendChild(contentModalDescription[1]);
+        pTechnologiesReal.appendChild(contentModalDescription[2]);
         menuGridCard.appendChild(modal);
         let linksOfPics;
         if (window.innerWidth < 100) {
             linksOfPics = ['mobile'];
         } else {
-            linksOfPics = ['desktop', 'tablet', 'mobile'];
+            linksOfPics = ['desktop', 'tablette', 'mobile'];
         }
         for (let i = 0; i < linksOfPics.length; i++) {
-            let h4 = document.createElement('h4');
-            h4.textContent = linksOfPics[i];
             if (i === 0) {
-                divTopModalContent.appendChild(h4);
+                h4DivTopModalContent.textContent = linksOfPics[i];
+                divTopModalContent.appendChild(h4DivTopModalContent);
             } else {
+                let h4 = document.createElement('h4');
+                h4.textContent = linksOfPics[i];
                 modalContent.appendChild(h4);
+                modalContentImgsH4.push(h4);
             }
             for (let x of JSONImgsLinks[datasetName][linksOfPics[i]]) {
                 let img = document.createElement('img');
                 img.src = x;
                 img.alt = 'Image du site : ' + datasetName;
                 modalContent.appendChild(img);
-                modalContentImgs.push(img);
+                modalContentImgsH4.push(img);
                 img.onclick = e => {
                     if (allowClickChangeModalImg === true) {
                         imgModalClicked = e.target;
@@ -160,19 +181,21 @@ window.addEventListener('click', function (e) {
             imgModalClicked = null;
             allowClickChangeModalImg = false;
         }
-    } else if (modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno) {
+    } else if (modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent) {
         function clickOutsideImg(img) {
             return eTarget !== img;
         }
-        let result = modalContentImgs.every(clickOutsideImg);
+        let result = modalContentImgsH4.every(clickOutsideImg);
         if (result) {
-            h3SujetReal.removeChild(contentAllPDescription[0]);
-            pObjectifReal.removeChild(contentAllPDescription[1]);
-            pTechnologiesReal.removeChild(contentAllPDescription[2]);
-            for (let el of modalContentImgs) {
+            h3SujetReal.removeChild(contentModalDescription[0]);
+            pObjectifReal.removeChild(contentModalDescription[1]);
+            pTechnologiesReal.removeChild(contentModalDescription[2]);
+            contentModalDescription = [];
+            divTopModalContent.removeChild(h4DivTopModalContent);
+            for (let el of modalContentImgsH4) {
                 modalContent.removeChild(el);
             }
-            modalContentImgs = [];
+            modalContentImgsH4 = [];
             menuGridCard.removeChild(modal);
             modalIsOpen = false;
         }

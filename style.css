@@ -168,20 +168,11 @@ h2, h4 {
   padding: 1.25rem 9.375rem;
 }
 
-/*.modal-content-pic-grid-card {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: auto auto auto;
-  row-gap: 20px;
-  column-gap: 20px;
-  padding: 1.25rem;
-}*/
-
 .modal-content-pic-grid-card > h4 {
   width: 100%;
   text-align: center;
   margin-top: 2.5rem;
+  text-transform: capitalize;
 }
 
 .modal-content-top-div {
@@ -193,24 +184,31 @@ h2, h4 {
 .modal-content-top-div > h4 {
   text-align: center;
   width: 100%;
+  text-transform: capitalize;
 }
 
 .modal-content-description {
   height: min-content;
   padding: 0 1.25rem;
+  margin-bottom: 30px;
 }
 
 .modal-content-description p, .modal-content-description h3 {
   color: #fff;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 1.5625rem;
-  width: 500px;
+  /* width: 500px; */
 }
 
-.modal-content-description span {
-  font-size: 27px;
+.modal-content-description-span-titles {
+  font-size: 1.6875rem;
   color: bisque;
+}
+
+.real-subj-title {
+  font-size: 1.875rem;
+  text-decoration: underline;
 }
 
 .modal-content-pic-grid-card img {
