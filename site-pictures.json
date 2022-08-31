@@ -29,10 +29,80 @@
             ]
         }
     },
-    "Password-Generator": {
-        "Password-Generator-description": [
+    
+    "Password Generator": {
+        "Password Generator-description": [
             "Password Generator",
-            "dans le cadre d'une évaluation, réaliser ce site en respectant la maquette, comme modifier le curseur (la boule) définissant la longueur du mot de passe. Ce site permet de générer un mot de passe aléatoire selon différents paramètres, comme la longueur ou le type de caractère, au clique sur un bouton, et de le copier dans le presse-papier."
-        ]
+            "dans le cadre d'une évaluation, réaliser ce site en respectant la maquette, comme par exemple faire le curseur (la boule) définissant la longueur du mot de passe en jaune avec des ombres qui devient blanc au clique. Ce site permet de générer un mot de passe aléatoire selon différents paramètres, comme la longueur ou le type de caractère, au clique sur un bouton, et de le copier dans le presse-papier.",
+            "HTML5, CSS3, JavaScript."
+        ],
+        "Password Generator-links": {
+            "desktop": [
+                "pictures/Password-Generator/desktop/Password-Generator-1-desktop.webp"
+            ],
+            "tablette": [
+                "pictures/Password-Generator/tablet/Password-Generator-1-tablet.webp"
+            ],
+            "mobile": [
+                "pictures/Password-Generator/mobile/Password-Generator-1-mobile.webp"
+            ]
+        }
+    },
+
+    "Insure": {
+        "Insure-description": [
+            "Insure",
+            "intégrer une maquette en format desktop, tablette et mobile.",
+            "HTML5, CSS3, menu burger en CSS."
+        ],
+        "Insure-links": {
+            "desktop": [
+                "pictures/Insure/desktop/Insure-1-desktop.webp",
+                "pictures/Insure/desktop/Insure-2-desktop.webp",
+                "pictures/Insure/desktop/Insure-3-desktop.webp"
+            ],
+            "tablette": [],
+            "mobile": [
+                "pictures/Insure/mobile/Insure-1-mobile.webp",
+                "pictures/Insure/mobile/Insure-2-mobile.webp",
+                "pictures/Insure/mobile/Insure-3-mobile.webp",
+                "pictures/Insure/mobile/Insure-4-mobile.webp",
+                "pictures/Insure/mobile/Insure-5-mobile.webp",
+                "pictures/Insure/mobile/Insure-6-mobile.webp"
+            ]
+        }
+    },
+
+    "Rock Paper Scissors": {
+        "Rock Paper Scissors-description": [
+            "Rock Paper Scissors",
+            "rendre fonctionel le jeux pierre, feuille, papier, ciseau avec le score.",
+            "JavaScript"
+        ],
+        "Rock Paper Scissors-links": {
+            "desktop": [
+                "pictures/Rock-Paper-Scissors/desktop/Rock-Paper-Scissors-1-desktop.webp",
+                "pictures/Rock-Paper-Scissors/desktop/Rock-Paper-Scissors-2-desktop.webp",
+                "pictures/Rock-Paper-Scissors/desktop/Rock-Paper-Scissors-3-desktop.webp"
+            ],
+            "tablette": [],
+            "mobile": [
+                "pictures/Rock-Paper-Scissors/mobile/Rock-Paper-Scissors-1-mobile.webp",
+                "pictures/Rock-Paper-Scissors/mobile/Rock-Paper-Scissors-2-mobile.webp"
+            ]
+        }
+    },
+
+    "Première Journée JS": {
+        "Première Journée JS-description": [
+            "Première Journée JS",
+            "faire un formulaire et afficher les notifiations d'erreur, le message et le point d'exclamation, selon ce qui est entré. Tester la validité du formlaire avec Constraint validation API.",
+            "HTML5, CSS3, JavaScript."
+        ],
+        "Première Journée JS-links": {
+            "desktop": [
+                ""
+            ]
+        }
     }
 }
