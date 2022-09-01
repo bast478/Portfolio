@@ -140,5 +140,61 @@
                 "pictures/Ping/mobile/Ping-3-mobile.webp"
             ]
         }
+    },
+
+    "single price grid": {
+        "single price grid-description": [
+            "single price grid",
+            "réaliser l'intégration HTML et CSS.",
+            "HTML5, CSS3."
+        ],
+        "single price grid-links": {
+            "desktop": [
+                "pictures/single-price-grid/desktop/single-price-grid-1-desktop.webp"
+            ],
+            "tablette": [],
+            "mobile": [
+                "pictures/single-price-grid/mobile/single-price-grid-1-mobile.webp"
+            ]
+        }
+    },
+
+    "Huddle": {
+        "Huddle-description": [
+            "Huddle",
+            "réaliser l'intégration HTML et CSS.",
+            "HTML5, CSS3."
+        ],
+        "Huddle-links": {
+            "desktop": [
+                "pictures/Huddle/desktop/Huddle-1-desktop.webp",
+                "pictures/Huddle/desktop/Huddle-2-desktop.webp",
+                "pictures/Huddle/desktop/Huddle-3-desktop.webp"
+            ],
+            "tablette": [],
+            "mobile": [
+                "pictures/Huddle/mobile/Huddle-1-mobile.webp"
+            ]
+        }
+    },
+
+    "car": {
+        "car-description": [
+            "car",
+            "réaliser l'intégration HTML et CSS.",
+            "HTML5, CSS3."
+        ],
+        "car-links": {
+            "desktop": [
+                "pictures/car/desktop/car-1-desktop.webp",
+                "pictures/car/desktop/car-2-desktop.webp"
+            ],
+            "tablette": [
+                "pictures/car/tablet/car-1-tablet.webp"
+            ],
+            "mobile": [
+                "pictures/car/mobile/car-1-mobile.webp"
+            ]
+        }
     }
 }
