@@ -214,20 +214,30 @@ h2, h4 {
 .modal-content-pic-grid-card img {
   max-width: 500px;
   max-height: 500px;
+  width: auto;
   height: min-content;
   transition: transform 0.7s;
   z-index: 0;
-  top: 0;
 }
 
 .modal-content-pic-grid-card .img-clicked {
-  position: fixed;
-  width: auto;
   max-height: 75%;
   max-width: 60%;
+  width: auto;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.modal-content-pic-grid-card .div-img-clicked {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
   z-index: 1;
 }
 /*********************/

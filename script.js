@@ -91,7 +91,10 @@ const JSONDescriptions = {},
 let modalIsOpen = false, modalContentImgs = [], targetGridCards, datasetName;
 
 /*img clicked modal*/
-let imgModalClicked = null, allowClickChangeModalImg = true;
+const divOfImgClicked = document.createElement('div');
+divOfImgClicked.classList.add('div-img-clicked');
+let imgOfModalClicked = null;
+// let allowClickChangeModalImg = true;
 
 /************************************************************************/
 
@@ -138,11 +141,14 @@ linkPictures.addEventListener('click', function(e) {
         pObjectifReal.appendChild(contentModalDescription[1]);
         pTechnologiesReal.appendChild(contentModalDescription[2]);
         menuGridCard.appendChild(modal);
-        let linksOfPics;
-        if (window.innerWidth < 100) {
-            linksOfPics = ['mobile'];
-        } else {
-            linksOfPics = ['desktop', 'tablette', 'mobile'];
+        let linksOfPics = [];
+        for (let n in JSONImgsLinks[datasetName]) {
+            console.log(n);
+            if (window.innerWidth < 100) {
+                linksOfPics = ['mobile'];
+            } else {
+                linksOfPics.push(n);
+            }
         }
         for (let i = 0; i < linksOfPics.length; i++) {
             if (i === 0) {
@@ -162,12 +168,16 @@ linkPictures.addEventListener('click', function(e) {
                 modalContent.appendChild(img);
                 modalContentImgs.push(img);
                 img.onclick = e => {
-                    if (allowClickChangeModalImg === true) {
-                        imgModalClicked = e.target;
-                        imgModalClicked.classList.add('img-clicked');
-                    } else {
-                        allowClickChangeModalImg = true;
-                    }
+                    imgOfModalClicked = e.target;
+                    imgOfModalClicked.classList.add('img-clicked');
+                    modalContent.appendChild(divOfImgClicked);
+                    // if (allowClickChangeModalImg === true) {
+                    //     imgOfModalClicked = e.target;
+                    //     imgOfModalClicked.classList.add('img-clicked');
+                    //     modalContent.appendChild(divOfImgClicked);
+                    // } else {
+                    //     allowClickChangeModalImg = true;
+                    // }
                 };
             }
         }
@@ -177,24 +187,25 @@ linkPictures.addEventListener('click', function(e) {
 //Si je clique
 window.addEventListener('click', function (e) {
     const eTarget = e.target;
-    if (imgModalClicked !== null && eTarget !== imgModalClicked) {
-        function clickOutside(el) {
-            return eTarget !== el;
-        }
-        const resultColons = colonsOfModalDescr.every(clickOutside);
-        const resultContentModalDescription = contentModalDescription.every(clickOutside);
-        if (eTarget === modalContent || eTarget === divTopModalContent || eTarget === h4DivTopModalContent || eTarget === h4SecondModalContent || eTarget === h4ThirdModalContent || eTarget === h3SujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || resultContentModalDescription === false || resultColons === false || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalContentDescription) {
-            imgModalClicked.classList.remove('img-clicked');
-            modal.classList.remove('img-clicked');
-            imgModalClicked = null;
-        } else {
-            imgModalClicked.classList.remove('img-clicked');
-            modal.classList.remove('img-clicked');
-            imgModalClicked = null;
-            allowClickChangeModalImg = false;
-        }
-    } else if (imgModalClicked === null && modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent && eTarget !== h4SecondModalContent && eTarget !== h4ThirdModalContent) {
-        console.log('ddfd');
+    if (imgOfModalClicked !== null && eTarget !== imgOfModalClicked) {
+        modalContent.removeChild(divOfImgClicked);
+        imgOfModalClicked.classList.remove('img-clicked');
+        imgOfModalClicked = null;
+        // function clickOutside(el) {
+        //     return eTarget !== el;
+        // }
+        // const resultColons = colonsOfModalDescr.every(clickOutside);
+        // const resultContentModalDescription = contentModalDescription.every(clickOutside);
+        // if (eTarget === modalContent || eTarget === divTopModalContent || eTarget === h4DivTopModalContent || eTarget === h4SecondModalContent || eTarget === h4ThirdModalContent || eTarget === h3SujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || resultContentModalDescription === false || resultColons === false || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalContentDescription) {
+        //     imgOfModalClicked.classList.remove('img-clicked');
+        //     imgOfModalClicked = null;
+        // } else {
+        //     imgOfModalClicked.classList.remove('img-clicked');
+        //     imgOfModalClicked = null;
+        //     allowClickChangeModalImg = false;
+        // }
+    } else if (imgOfModalClicked === null && modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent && eTarget !== h4SecondModalContent && eTarget !== h4ThirdModalContent) {
+        console.log('else if');
         function clickOutside(el) {
             return eTarget !== el;
         }
