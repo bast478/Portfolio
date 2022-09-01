@@ -64,10 +64,12 @@ h3SujetReal.append(spanSujet);
 pObjectifReal.append(spanObjectif);
 pTechnologiesReal.append(spanTechno);
 divModalContentDescription.append(h3SujetReal, pObjectifReal, pTechnologiesReal);
+const colonsOfModalDescr = [];
 for (let x of divModalContentDescription.children) {
     const colon = document.createElement('span');
     colon.textContent = ' : ';
     x.appendChild(colon);
+    colonsOfModalDescr.push(colon);
 }
 divTopModalContent.appendChild(divModalContentDescription);
 modalContent.appendChild(divTopModalContent);
@@ -80,9 +82,13 @@ spanTechno.classList.add('modal-content-description-span-titles');
 
 /*remplacer le menu par la carte quand on quitte*/
 let prevCard, prevmenuGridCard = null;
-/*modal/first h4 top modal div/target/dataset*/
-const JSONDescriptions = {}, JSONImgsLinks = {}, h4DivTopModalContent = document.createElement('h4');
-let modalIsOpen = false, modalContentImgsH4 = [], targetGridCards, datasetName;
+/*modal/h4ModalContent/target/dataset*/
+const JSONDescriptions = {},
+    JSONImgsLinks = {},
+    h4DivTopModalContent = document.createElement('h4'),
+    h4SecondModalContent = document.createElement('h4'),
+    h4ThirdModalContent = document.createElement('h4');
+let modalIsOpen = false, modalContentImgs = [], targetGridCards, datasetName;
 
 /*img clicked modal*/
 let imgModalClicked = null, allowClickChangeModalImg = true;
@@ -142,18 +148,19 @@ linkPictures.addEventListener('click', function(e) {
             if (i === 0) {
                 h4DivTopModalContent.textContent = linksOfPics[i];
                 divTopModalContent.appendChild(h4DivTopModalContent);
+            } else if (i === 1) {
+                h4SecondModalContent.textContent = linksOfPics[i];
+                modalContent.appendChild(h4SecondModalContent);
             } else {
-                let h4 = document.createElement('h4');
-                h4.textContent = linksOfPics[i];
-                modalContent.appendChild(h4);
-                modalContentImgsH4.push(h4);
+                h4ThirdModalContent.textContent = linksOfPics[i];
+                modalContent.appendChild(h4ThirdModalContent);
             }
             for (let x of JSONImgsLinks[datasetName][linksOfPics[i]]) {
                 let img = document.createElement('img');
                 img.src = x;
                 img.alt = 'Image du site : ' + datasetName;
                 modalContent.appendChild(img);
-                modalContentImgsH4.push(img);
+                modalContentImgs.push(img);
                 img.onclick = e => {
                     if (allowClickChangeModalImg === true) {
                         imgModalClicked = e.target;
@@ -171,7 +178,12 @@ linkPictures.addEventListener('click', function(e) {
 window.addEventListener('click', function (e) {
     const eTarget = e.target;
     if (imgModalClicked !== null && eTarget !== imgModalClicked) {
-        if (eTarget === modalContent || eTarget === modal || eTarget === h3SujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalContentDescription) {
+        function clickOutside(el) {
+            return eTarget !== el;
+        }
+        const resultColons = colonsOfModalDescr.every(clickOutside);
+        const resultContentModalDescription = contentModalDescription.every(clickOutside);
+        if (eTarget === modalContent || eTarget === divTopModalContent || eTarget === h4DivTopModalContent || eTarget === h4SecondModalContent || eTarget === h4ThirdModalContent || eTarget === h3SujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || resultContentModalDescription === false || resultColons === false || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalContentDescription) {
             imgModalClicked.classList.remove('img-clicked');
             modal.classList.remove('img-clicked');
             imgModalClicked = null;
@@ -181,25 +193,28 @@ window.addEventListener('click', function (e) {
             imgModalClicked = null;
             allowClickChangeModalImg = false;
         }
-    } else if (modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent) {
-        function clickOutsideImg(img) {
-            return eTarget !== img;
+    } else if (imgModalClicked === null && modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent && eTarget !== h4SecondModalContent && eTarget !== h4ThirdModalContent) {
+        console.log('ddfd');
+        function clickOutside(el) {
+            return eTarget !== el;
         }
-        let result = modalContentImgsH4.every(clickOutsideImg);
-        if (result) {
+        const resultImgs = modalContentImgs.every(clickOutside);
+        const resultColons = colonsOfModalDescr.every(clickOutside);
+        const resultContentModalDescription = contentModalDescription.every(clickOutside);
+        if (resultImgs && resultColons && resultContentModalDescription) {
             h3SujetReal.removeChild(contentModalDescription[0]);
             pObjectifReal.removeChild(contentModalDescription[1]);
             pTechnologiesReal.removeChild(contentModalDescription[2]);
             contentModalDescription = [];
             divTopModalContent.removeChild(h4DivTopModalContent);
-            for (let el of modalContentImgsH4) {
+            for (let el of modalContentImgs) {
                 modalContent.removeChild(el);
             }
-            modalContentImgsH4 = [];
+            modalContentImgs = [];
             menuGridCard.removeChild(modal);
             modalIsOpen = false;
         }
-    } else if (prevmenuGridCard !== null && eTarget !== targetGridCards && eTarget !== submenuGridCard && eTarget !== prevmenuGridCard && eTarget !== linkPictures && modalIsOpen === false && eTarget !== linkGithub) {
+    } else if (modalIsOpen === false && prevmenuGridCard !== null && eTarget !== targetGridCards && eTarget !== submenuGridCard && eTarget !== prevmenuGridCard && eTarget !== linkPictures && eTarget !== linkGithub) {
         prevmenuGridCard.replaceWith(prevCard);
         prevmenuGridCard = null;
     }
