@@ -82,13 +82,14 @@ spanTechno.classList.add('modal-content-description-span-titles');
 
 /*remplacer le menu par la carte quand on quitte*/
 let prevCard, prevmenuGridCard = null;
+
 /*modal/h4ModalContent/target/dataset*/
 const JSONDescriptions = {},
     JSONImgsLinks = {},
     h4DivTopModalContent = document.createElement('h4'),
     h4SecondModalContent = document.createElement('h4'),
     h4ThirdModalContent = document.createElement('h4');
-let modalIsOpen = false, modalContentImgs = [], targetGridCards, datasetName;
+let modalIsOpen = false, modalContentImgs = [], targetGridCards, datasetName, categoryOfLinksOfPics = [];
 
 /*img clicked modal*/
 const divOfImgClicked = document.createElement('div');
@@ -141,27 +142,25 @@ linkPictures.addEventListener('click', function(e) {
         pObjectifReal.appendChild(contentModalDescription[1]);
         pTechnologiesReal.appendChild(contentModalDescription[2]);
         menuGridCard.appendChild(modal);
-        let linksOfPics = [];
-        for (let n in JSONImgsLinks[datasetName]) {
-            console.log(n);
-            if (window.innerWidth < 100) {
-                linksOfPics = ['mobile'];
-            } else {
-                linksOfPics.push(n);
+        if (window.innerWidth < 100) {
+            categoryOfLinksOfPics = ['mobile'];
+        } else {
+            for (let n in JSONImgsLinks[datasetName]) {
+                categoryOfLinksOfPics.push(n);
             }
         }
-        for (let i = 0; i < linksOfPics.length; i++) {
+        for (let i = 0; i < categoryOfLinksOfPics.length; i++) {
             if (i === 0) {
-                h4DivTopModalContent.textContent = linksOfPics[i];
+                h4DivTopModalContent.textContent = categoryOfLinksOfPics[i];
                 divTopModalContent.appendChild(h4DivTopModalContent);
             } else if (i === 1) {
-                h4SecondModalContent.textContent = linksOfPics[i];
+                h4SecondModalContent.textContent = categoryOfLinksOfPics[i];
                 modalContent.appendChild(h4SecondModalContent);
             } else {
-                h4ThirdModalContent.textContent = linksOfPics[i];
+                h4ThirdModalContent.textContent = categoryOfLinksOfPics[i];
                 modalContent.appendChild(h4ThirdModalContent);
             }
-            for (let x of JSONImgsLinks[datasetName][linksOfPics[i]]) {
+            for (let x of JSONImgsLinks[datasetName][categoryOfLinksOfPics[i]]) {
                 let img = document.createElement('img');
                 img.src = x;
                 img.alt = 'Image du site : ' + datasetName;
@@ -205,7 +204,6 @@ window.addEventListener('click', function (e) {
         //     allowClickChangeModalImg = false;
         // }
     } else if (imgOfModalClicked === null && modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent && eTarget !== h4SecondModalContent && eTarget !== h4ThirdModalContent) {
-        console.log('else if');
         function clickOutside(el) {
             return eTarget !== el;
         }
@@ -218,9 +216,19 @@ window.addEventListener('click', function (e) {
             pTechnologiesReal.removeChild(contentModalDescription[2]);
             contentModalDescription = [];
             divTopModalContent.removeChild(h4DivTopModalContent);
+            if (categoryOfLinksOfPics.length === 3) {
+                modalContent.removeChild(h4SecondModalContent);
+                modalContent.removeChild(h4ThirdModalContent);
+            } else {
+                modalContent.removeChild(h4SecondModalContent);
+            }
+            categoryOfLinksOfPics = [];
             for (let el of modalContentImgs) {
                 modalContent.removeChild(el);
             }
+            // while (modalContent.firstChild) {
+            //     modalContent.removeChild(modalContent.firstChild);
+            // }
             modalContentImgs = [];
             menuGridCard.removeChild(modal);
             modalIsOpen = false;

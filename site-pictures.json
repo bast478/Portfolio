@@ -61,7 +61,6 @@
                 "pictures/Insure/desktop/Insure-2-desktop.webp",
                 "pictures/Insure/desktop/Insure-3-desktop.webp"
             ],
-            "tablette": [],
             "mobile": [
                 "pictures/Insure/mobile/Insure-1-mobile.webp",
                 "pictures/Insure/mobile/Insure-2-mobile.webp",
@@ -85,7 +84,6 @@
                 "pictures/Rock-Paper-Scissors/desktop/Rock-Paper-Scissors-2-desktop.webp",
                 "pictures/Rock-Paper-Scissors/desktop/Rock-Paper-Scissors-3-desktop.webp"
             ],
-            "tablette": [],
             "mobile": [
                 "pictures/Rock-Paper-Scissors/mobile/Rock-Paper-Scissors-1-mobile.webp",
                 "pictures/Rock-Paper-Scissors/mobile/Rock-Paper-Scissors-2-mobile.webp"
@@ -106,7 +104,6 @@
                 "pictures/Journee-JS-1/desktop/Journee-JS-1-3-desktop.webp",
                 "pictures/Journee-JS-1/desktop/Journee-JS-1-4-desktop.webp"
             ],
-            "tablette": [],
             "mobile": [
                 "pictures/Journee-JS-1/mobile/Journee-JS-1-1-mobile.webp",
                 "pictures/Journee-JS-1/mobile/Journee-JS-1-2-mobile.webp",
@@ -152,7 +149,6 @@
             "desktop": [
                 "pictures/single-price-grid/desktop/single-price-grid-1-desktop.webp"
             ],
-            "tablette": [],
             "mobile": [
                 "pictures/single-price-grid/mobile/single-price-grid-1-mobile.webp"
             ]
@@ -171,7 +167,6 @@
                 "pictures/Huddle/desktop/Huddle-2-desktop.webp",
                 "pictures/Huddle/desktop/Huddle-3-desktop.webp"
             ],
-            "tablette": [],
             "mobile": [
                 "pictures/Huddle/mobile/Huddle-1-mobile.webp"
             ]
