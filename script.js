@@ -51,6 +51,7 @@ modal.appendChild(modalContent);
 /*texte du modal*/
 let contentModalDescription = [];
 const divTopModalContent = document.createElement('div'),
+    divTopModalContentRightDiv = document.createElement('div'),
     divModalContentDescription = document.createElement('div'),
     h3SujetReal = document.createElement('h3'),
     pObjectifReal = document.createElement('p'),
@@ -60,6 +61,7 @@ const divTopModalContent = document.createElement('div'),
     spanTechno = document.createElement('span');
 divModalContentDescription.classList.add('modal-content-description');
 divTopModalContent.classList.add('modal-content-top-div');
+divTopModalContentRightDiv.classList.add('modal-content-top-div-right-div');
 h3SujetReal.append(spanSujet);
 pObjectifReal.append(spanObjectif);
 pTechnologiesReal.append(spanTechno);
@@ -72,6 +74,7 @@ for (let x of divModalContentDescription.children) {
     colonsOfModalDescr.push(colon);
 }
 divTopModalContent.appendChild(divModalContentDescription);
+divTopModalContent.appendChild(divTopModalContentRightDiv);
 modalContent.appendChild(divTopModalContent);
 spanSujet.textContent = 'Sujet';
 spanSujet.classList.add('modal-content-description-span-titles');
@@ -89,7 +92,7 @@ const JSONDescriptions = {},
     h4DivTopModalContent = document.createElement('h4'),
     h4SecondModalContent = document.createElement('h4'),
     h4ThirdModalContent = document.createElement('h4');
-let modalIsOpen = false, modalContentImgs = [], targetGridCards, datasetName, categoryOfLinksOfPics = [];
+let modalIsOpen = false, modalContentDivsImgs = [], modalContentImgs = [], targetGridCards, datasetName, categoryOfLinksOfPics = [];
 
 /*img clicked modal*/
 const divOfImgClicked = document.createElement('div');
@@ -152,19 +155,23 @@ linkPictures.addEventListener('click', function(e) {
         for (let i = 0; i < categoryOfLinksOfPics.length; i++) {
             if (i === 0) {
                 h4DivTopModalContent.textContent = categoryOfLinksOfPics[i];
-                divTopModalContent.appendChild(h4DivTopModalContent);
+                divTopModalContentRightDiv.appendChild(h4DivTopModalContent);
             } else if (i === 1) {
                 h4SecondModalContent.textContent = categoryOfLinksOfPics[i];
                 modalContent.appendChild(h4SecondModalContent);
-            } else {
+            } else if (i === 2) {
                 h4ThirdModalContent.textContent = categoryOfLinksOfPics[i];
                 modalContent.appendChild(h4ThirdModalContent);
             }
+            const div = document.createElement('div');
+            div.classList.add('modal-content-divs-img');
+            modalContent.appendChild(div);
+            modalContentDivsImgs.push(div);
             for (let x of JSONImgsLinks[datasetName][categoryOfLinksOfPics[i]]) {
-                let img = document.createElement('img');
+                const img = document.createElement('img');
                 img.src = x;
                 img.alt = 'Image du site : ' + datasetName;
-                modalContent.appendChild(img);
+                div.appendChild(img);
                 modalContentImgs.push(img);
                 img.onclick = e => {
                     imgOfModalClicked = e.target;
@@ -185,6 +192,7 @@ linkPictures.addEventListener('click', function(e) {
 
 //Si je clique
 window.addEventListener('click', function (e) {
+    console.log(modalContentDivsImgs);
     const eTarget = e.target;
     if (imgOfModalClicked !== null && eTarget !== imgOfModalClicked) {
         modalContent.removeChild(divOfImgClicked);
@@ -195,7 +203,7 @@ window.addEventListener('click', function (e) {
         // }
         // const resultColons = colonsOfModalDescr.every(clickOutside);
         // const resultContentModalDescription = contentModalDescription.every(clickOutside);
-        // if (eTarget === modalContent || eTarget === divTopModalContent || eTarget === h4DivTopModalContent || eTarget === h4SecondModalContent || eTarget === h4ThirdModalContent || eTarget === h3SujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || resultContentModalDescription === false || resultColons === false || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalContentDescription) {
+        // if (eTarget === modalContent || eTarget === divTopModalContent || eTarget === divTopModalContentRightDiv || eTarget === h4DivTopModalContent || eTarget === h4SecondModalContent || eTarget === h4ThirdModalContent || eTarget === h3SujetReal || eTarget === pObjectifReal || eTarget === pTechnologiesReal || resultContentModalDescription === false || resultColons === false || eTarget === spanSujet || eTarget === spanObjectif || eTarget === spanTechno || eTarget === divModalContentDescription) {
         //     imgOfModalClicked.classList.remove('img-clicked');
         //     imgOfModalClicked = null;
         // } else {
@@ -203,7 +211,7 @@ window.addEventListener('click', function (e) {
         //     imgOfModalClicked = null;
         //     allowClickChangeModalImg = false;
         // }
-    } else if (imgOfModalClicked === null && modalIsOpen === true && eTarget !== divModalContentDescription && eTarget !== h3SujetReal && eTarget !== pObjectifReal && eTarget !== pTechnologiesReal && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent && eTarget !== h4SecondModalContent && eTarget !== h4ThirdModalContent) {
+    } else if (imgOfModalClicked === null && modalIsOpen === true && eTarget !== spanSujet && eTarget !== spanObjectif && eTarget !== spanTechno && eTarget !== h4DivTopModalContent && eTarget !== h4SecondModalContent && eTarget !== h4ThirdModalContent) {
         function clickOutside(el) {
             return eTarget !== el;
         }
@@ -215,7 +223,7 @@ window.addEventListener('click', function (e) {
             pObjectifReal.removeChild(contentModalDescription[1]);
             pTechnologiesReal.removeChild(contentModalDescription[2]);
             contentModalDescription = [];
-            divTopModalContent.removeChild(h4DivTopModalContent);
+            divTopModalContentRightDiv.removeChild(h4DivTopModalContent);
             if (categoryOfLinksOfPics.length === 3) {
                 modalContent.removeChild(h4SecondModalContent);
                 modalContent.removeChild(h4ThirdModalContent);
@@ -223,13 +231,11 @@ window.addEventListener('click', function (e) {
                 modalContent.removeChild(h4SecondModalContent);
             }
             categoryOfLinksOfPics = [];
-            for (let el of modalContentImgs) {
+            for (let el of modalContentDivsImgs) {
+                console.log(el);
                 modalContent.removeChild(el);
             }
-            // while (modalContent.firstChild) {
-            //     modalContent.removeChild(modalContent.firstChild);
-            // }
-            modalContentImgs = [];
+            modalContentDivsImgs = [];
             menuGridCard.removeChild(modal);
             modalIsOpen = false;
         }

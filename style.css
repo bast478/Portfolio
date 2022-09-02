@@ -160,31 +160,17 @@ h2, h4 {
 
 .modal-content-pic-grid-card {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  row-gap: 20px;
-  column-gap: 20px;
   padding: 1.25rem 9.375rem;
 }
 
+.modal-content-pic-grid-card h4 {
+  text-transform: capitalize;
+}
+
 .modal-content-pic-grid-card > h4 {
-  width: 100%;
-  text-align: center;
   margin-top: 2.5rem;
-  text-transform: capitalize;
-}
-
-.modal-content-top-div {
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-}
-
-.modal-content-top-div > h4 {
-  text-align: center;
-  width: 100%;
-  text-transform: capitalize;
 }
 
 .modal-content-description {
@@ -209,6 +195,26 @@ h2, h4 {
 .real-subj-title {
   font-size: 1.875rem;
   text-decoration: underline;
+}
+
+.modal-content-top-div {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.modal-content-top-div-right-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-content-divs-img {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
 }
 
 .modal-content-pic-grid-card img {
