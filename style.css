@@ -170,13 +170,13 @@ h2, h4 {
 }
 
 .modal-content-pic-grid-card > h4 {
-  margin-top: 2.5rem;
+  margin: 3.75rem 0 .9375rem;
 }
 
 .modal-content-description {
   height: min-content;
   padding: 0 1.25rem;
-  margin-bottom: 30px;
+  margin-bottom: 3.75rem;
 }
 
 .modal-content-description p, .modal-content-description h3 {
@@ -199,8 +199,9 @@ h2, h4 {
 
 .modal-content-top-div {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   width: 100%;
+  margin-bottom: .9375rem;
 }
 
 .modal-content-top-div-right-div {
