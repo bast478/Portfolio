@@ -30,7 +30,7 @@ main {
   align-self: flex-end;
 }
 
-#formulaire-contact {
+#lien-formulaire-contact {
   text-decoration: none;
   color: #fff;
   grid-area: formulaire;
@@ -246,6 +246,74 @@ h2, h4 {
   left: 0;
   background: rgba(0,0,0,0.5);
   z-index: 1;
+}
+/*********************/
+#formulaire-titre {
+  margin: 4.375rem 0 1.25rem;
+}
+
+#formulaire-contact {
+  font-family: 'Average Sans', sans-serif;
+  font-size: 25px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#form-info {
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 15px;
+  column-gap: 15px;
+}
+
+#submit {
+  font-family: 'Average Sans', sans-serif;
+  font-size: 25px;
+  margin-top: 15px;
+  background-color: #0E0F3B;
+  color: #fff;
+  border: solid 1px #fff;
+  border-radius: 2px;
+  padding: .125rem .5625rem;
+  cursor: pointer;
+  position: relative;
+  transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#submit::after, #submit::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  opacity: 0;
+  transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#submit::after {
+  width: 30px;
+  height: 1px;
+  transform: translateX(-3px);
+  background-color: #fff;
+}
+
+#submit::before {
+  width: 11px;
+  height: 11px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  transform: rotate(-135deg) translateX(50%);
+  margin-top: -1px;
+}
+
+#submit:hover {
+  padding: .125rem 3rem .125rem .5625rem;
+}
+
+#submit:hover::after, #submit:hover::before {
+  opacity: 1;
+  right: 6px;
 }
 /*********************/
 #vagues {

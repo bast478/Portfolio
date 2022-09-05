@@ -7,7 +7,6 @@ function setAttributes(el, attrs) {
 
 // VARIABLES
 
-
 const svgNS = "http://www.w3.org/2000/svg";
 const gridCards = document.querySelectorAll('.grid-card');
 
@@ -100,6 +99,9 @@ divOfImgClicked.classList.add('div-img-clicked');
 let imgOfModalClicked = null;
 // let allowClickChangeModalImg = true;
 
+/*FORMULAIRE DE CONTACT*/
+const formLink = document.getElementById('lien-formulaire-contact');
+
 /************************************************************************/
 
 fetch('site-pictures.json')
@@ -190,9 +192,7 @@ linkPictures.addEventListener('click', function(e) {
     }
 });
 
-//Si je clique
 window.addEventListener('click', function (e) {
-    console.log(modalContentDivsImgs);
     const eTarget = e.target;
     if (imgOfModalClicked !== null && eTarget !== imgOfModalClicked) {
         modalContent.removeChild(divOfImgClicked);
@@ -232,7 +232,6 @@ window.addEventListener('click', function (e) {
             }
             categoryOfLinksOfPics = [];
             for (let el of modalContentDivsImgs) {
-                console.log(el);
                 modalContent.removeChild(el);
             }
             modalContentDivsImgs = [];
@@ -244,3 +243,7 @@ window.addEventListener('click', function (e) {
         prevmenuGridCard = null;
     }
 }, true);
+
+formLink.addEventListener('click', e => {
+
+});

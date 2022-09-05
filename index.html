@@ -13,7 +13,7 @@
     <body>
         <main>
             <nav id="infos">
-                <a target="_blank" id="formulaire-contact" href="#" title="Formulaire de contact">Formulaire de contact</a>
+                <a id="lien-formulaire-contact" href="#formulaire-contact" title="Formulaire de contact">Formulaire de contact</a>
                 <a target="_blank" href="contenu/CV.pdf" title="Mon CV">
                     <svg width="68" height="39" viewBox="0 0 68 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M32.9738 29.1223C31.6356 31.2256 30.3517 33.2832 27.4747 35.2822C25.9358 36.3609 22.3937 38.4686 17.3589 38.4686C7.75318 38.4686 0 31.485 0 19.2071C0 8.47656 7.29326 0 17.5637 0C21.7246 0 25.4215 1.43842 28.144 3.59625C30.6615 5.59918 31.8406 7.60266 32.8694 9.40078L25.6807 12.9928C25.1664 11.8135 24.5473 10.5798 22.9582 9.24588C21.2104 7.8575 19.4664 7.44775 17.9735 7.44775C12.119 7.44775 9.03697 12.8926 9.03697 18.952C9.03697 26.9142 13.0975 30.866 17.9735 30.866C22.6989 30.866 24.6016 27.579 25.8312 25.4758L32.9738 29.1225V29.1223ZM58.1566 1.12916H67.8125L55.2293 37.3897H45.9875L33.5593 1.12916H43.215L50.7131 26.9143L58.1566 1.12916Z" fill="white"/>
@@ -94,6 +94,22 @@
                     <a data-name="Huddle" target="_blank" href="#" class="grid-card"><img src="pictures/Huddle-mobile.png" alt="Site 'Huddle'"></a>
                     <a data-name="car" target="_blank" href="#" class="grid-card"><img src="pictures/car-mobile.png" alt="Site 'car', premier projet html/css"></a>
             </div>
+            <h2 id="formulaire-titre">Me contacter</h2>
+            <form id="formulaire-contact" action="">
+                <div id="form-info">
+                    <label for="last-name">Nom</label>
+                    <input type="text" name="last-name" id="last-name">
+                    <label for="first-name">Prénom</label>
+                    <input type="text" name="first-name" id="first-name">
+                    <label for="Establishment">Établissement</label>
+                    <input type="text" name="Establishment" id="Establishment">
+                    <label for="mail">Adresse mail</label>
+                    <input type="email" name="mail" id="mail">
+                    <label for="message">Votre message</label>
+                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                </div>
+                <button id="submit" type="submit">Envoyer</button>
+            </form>
             <svg id="vagues" viewbox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <path id='sineWave' fill="#0099ff" fill-opacity="0.2" d="m 1440,160.642 c -212.9524,-293.05058 -402.0444,-111.893916 -740,1.6e-4 -40.45943,13.39575 -534.92478,231.42798 -700.00000061462355,0 v 360 H 1440" />
