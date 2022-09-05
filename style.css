@@ -19,7 +19,6 @@ main {
 /******************/
 #infos {
   display: grid;
-  grid-template-columns: auto auto auto;
   grid-template-areas: ". . ." "formulaire formulaire formulaire";
   column-gap: 17px;
   row-gap: 10px;
@@ -249,22 +248,23 @@ h2, h4 {
 }
 /*********************/
 #container-contact-style {
-  /* display: none; */
   height: 0;
   overflow: hidden;
   transition: transform .4s ease-out;
   transform: translate(-50%) rotate(45deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #container-contact-style.show-form {
-  /* display: block; */
   overflow: visible;
   height: 380px;
   transform: translate(0) rotate(0);
 }
 
 #formulaire-titre {
-  margin: 4.375rem 0 1.25rem;
+  margin: 4.6875rem 0 2.5rem;
 }
 
 /* @keyframes title {
@@ -284,7 +284,7 @@ h2, h4 {
 
 #formulaire-contact {
   font-family: 'Average Sans', sans-serif;
-  font-size: 25px;
+  font-size: 1.5625rem;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -304,9 +304,8 @@ h2, h4 {
 
 #submit {
   font-family: 'Average Sans', sans-serif;
-  font-size: 25px;
+  font-size: 1.5625rem;
   margin-top: 15px;
-  /* background-color: #0E0F3B; */
   background-color: transparent;
   color: #fff;
   border: solid 1px #fff;
@@ -395,5 +394,108 @@ h2, h4 {
 
   100% {
     transform: scaleY(.8) translateX(100%);
+  }
+}
+/********************************************************************/
+@media (max-width: 1450px) {
+  /*CV, Linkedin...*/
+  #infos {
+    padding: 2rem 0 0;
+    align-self: initial;
+  }
+
+  /*Nom*/
+  #titre-et-avatar {
+    margin-top: 1.875rem;
+  }
+
+  /*Titre pro*/
+  #titre-pro {
+    margin-top: 4.375rem;
+  }
+
+  /*Réalisations*/
+  #realisations-titre {
+    margin-top: 5.3125rem;
+  }
+}
+/**************************************************************************/
+@media (max-width: 1120px) {
+
+  /*Titre pro*/
+  #titre-pro {
+    margin-top: 3.75rem;
+  }
+
+  #titre-pro p {
+    font-size: 1.75rem;
+  }
+}
+/**************************************************************************/
+@media (max-width: 1100px) {
+  /*Réalisations*/
+  #realisations-grid-container {
+    grid-template-columns: auto auto auto;
+  }
+}
+/*************************************************************************/
+@media (max-width: 990px) {
+  h1 {
+    font-size: 3.4375rem;
+  }
+  h2 {
+    font-size: 2.3125rem;
+  }
+
+  /*Titre pro*/
+  #titre-pro p {
+    font-size: 1.625rem;
+    max-width: 750px;
+  }
+  
+  /*Réalisations*/
+  #realisations-grid-container {
+    margin-top: 3.125rem;
+  }
+}
+/*************************************************************************/
+@media (max-width: 850px) {
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  /*Titre et avatar*/
+  h1 {
+    font-size: 3.125rem;
+  }
+
+  #titre-et-avatar svg {
+    width: 110px;
+  }
+
+  /*Titre pro*/
+  #titre-pro {
+    margin-top: 2.5rem;
+  }
+
+  #titre-pro p {
+    font-size: 1.4375rem;
+    max-width: 650px;
+  }
+
+  /*Réalisations*/
+  #realisations-titre {
+    margin-top: 3.8125rem;
+  }
+
+  #realisations-grid-container {
+    margin-top: 2.5rem;
+    column-gap: 70px;
+    row-gap: 60px;
+  }
+
+  #formulaire-contact {
+    font-size: 1.4375rem;
   }
 }

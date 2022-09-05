@@ -102,8 +102,6 @@ let imgOfModalClicked = null;
 /*FORMULAIRE DE CONTACT*/
 const formLink = document.getElementById('lien-formulaire-contact');
 const containerContactStyle = document.getElementById('container-contact-style');
-const formTitle = document.getElementById('formulaire-titre');
-const formContact = document.getElementById('formulaire-contact');
 
 /************************************************************************/
 
@@ -249,6 +247,4 @@ window.addEventListener('click', function (e) {
 
 formLink.addEventListener('click', e => {
     containerContactStyle.classList.add('show-form');
-    //formTitle.classList.add('show-form');
-    //formContact.classList.add('show-form');
 });
