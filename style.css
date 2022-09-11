@@ -514,7 +514,7 @@ h2, h4 {
     font-size: 1.75rem;
   }
 
-  /*Infos*/
+  /*Github, etc...*/
   #infos {
     padding: 1.375rem 0 0;
     font-size: 1.25rem;
@@ -564,7 +564,7 @@ h2, h4 {
     font-size: 1.375rem;
   }
 }
-
+/**********************************************************/
 @media (max-width: 690px) {
   /*Réalisations*/
   #realisations-grid-container {
@@ -576,11 +576,296 @@ h2, h4 {
     width: 130px;
   }
 }
-
+/*****************************************************************/
 @media (max-width: 620px) {
     /*Réalisations*/
     #realisations-grid-container {
       column-gap: 40px;
       row-gap: 43px;
     }
+}
+/*********************************************************************/
+@media (max-width: 590px) {
+  /*Titre et avatar*/
+  h1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #titre-et-avatar {
+    align-items: flex-end;
+  }
+
+  #titre-et-avatar svg {
+    margin-bottom: 1.125rem;
+  }
+
+  /*Titre pro*/
+  #titre-pro p {
+    font-size: 1.25rem;
+    max-width: 450px;
+  }
+
+  /*Réalisations*/
+  #realisations-grid-container {
+    column-gap: 32px;
+    row-gap: 36px;
+  }
+
+  /*Formulaire*/
+  #formulaire-contact {
+    font-size: 1.25rem;
+  }
+
+  #submit {
+    font-size: 1.25rem;
+  }
+}
+/*************************************************************/
+@media (max-width: 560px) {
+  /*Réalisations*/
+  #realisations-grid-container {
+    column-gap: 28px;
+    row-gap: 34px;
+    margin-top: 2.125rem;
+  }
+}
+/*****************************************************/
+@media (max-width: 540px) {
+  /*Réalisations*/
+  #realisations-grid-container {
+    grid-template-columns: auto auto;
+    column-gap: 70px;
+  }
+}
+/***********************************************************/
+@media (max-width: 530px) {
+  /*Github, etc...*/
+  #infos {
+    padding: 1.125rem 0 0;
+    font-size: 1.1875rem;
+    column-gap: 48px;
+  }
+
+  /*Titre et avatar*/
+  #titre-et-avatar {
+    margin-top: 4.0625rem;
+  }
+
+  /*Titre pro*/
+  #titre-pro {
+    margin-top: 2.25rem;
+  }
+
+  #titre-pro p {
+    font-size: 1.1875rem;
+    max-width: 420px;
+  }
+
+  /*Formulaire*/
+  #formulaire-titre {
+    margin: 4.3125rem 0 2.5rem;
+  }
+
+  #formulaire-contact {
+    font-size: 1.1875rem;
+  }
+
+  #submit {
+    font-size: 1.1875rem;
+  }
+}
+/***********************************************************/
+@media (max-width: 485px) {
+
+  /*Github, etc...*/
+  #titre-et-avatar {
+    margin-top: 4.5625rem;
+  }
+
+  /*Titre pro*/
+  #titre-pro {
+    margin-top: 2.5rem;
+  }
+
+  #titre-pro p {
+    font-size: 1.125rem;
+    max-width: none;
+    padding: 0 2.375rem;
+  }
+
+  /*Réalisations*/
+  #realisations-titre {
+    margin-top: 3.625rem;
+  }
+
+  #realisations-grid-container {
+    column-gap: 50px;
+  }
+
+  /*Formulaire*/
+  #formulaire-contact {
+    font-size: 1.125rem;
+  }
+
+  #submit {
+    font-size: 1.125rem;
+  }
+}
+/*******************************************************/
+@media (max-width: 440px) {
+  /*Réalisations*/
+  .grid-card {
+    width: 125px;
+    height: 191px;
+  }
+
+  /*Formulaire*/
+  #formulaire-titre {
+    margin: 4.125rem 0 2.5rem;
+  }
+}
+/********************************************************/
+@media (max-width: 415px) {
+  h2 {
+    font-size: 1.625rem;
+  }
+
+  /*Réalisations*/
+  #realisations-grid-container {
+    column-gap: 40px;
+    margin-top: 1.875rem;
+  }
+}
+/******************************************************/
+@media (max-width: 405px) {
+  /*Formulaire*/
+  #formulaire-titre {
+    margin: 4.125rem 0 1.1875rem;
+  }
+
+  #form-info {
+    grid-template-columns: auto;
+    row-gap: 5px;
+  }
+
+  #form-info  label {
+    place-self: center;
+  }
+
+  #form-info input {
+    margin-bottom: .625rem;
+  }
+}
+/****************************************************/
+@media (max-width: 375px) {
+  /*Titre*/
+  #titre-et-avatar {
+    margin-top: 3.875rem;
+  }
+
+  h1 {
+    font-size: 2.1875rem;
+  }
+
+  #titre-et-avatar svg {
+    margin-bottom: 1rem;
+    width: 78px;
+  }
+
+  /*Réalisations*/
+  #realisations-grid-container {
+    column-gap: 33px;
+    row-gap: 33px;
+    margin-top: 1.625rem;
+  }
+
+  /*Formulaire*/
+  #formulaire-titre {
+    margin: 3.625rem 0 1.1875rem;
+  }
+}
+/******************************************************/
+@media (max-width: 360px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /*Réalisations*/
+  #realisations-grid-container {
+    column-gap: 31px;
+    row-gap: 31px;
+    margin-top: 1.625rem;
+  }
+}
+/*********************************************************/
+@media (max-width: 350px) {
+  /*Réalisations*/
+  #realisations-grid-container {
+    column-gap: 29px;
+    row-gap: 29px;
+    margin-top: 1.625rem;
+  }
+}
+/*************************************************************/
+@media (max-width: 345px) {
+  main {
+    perspective: 500px;
+  }
+  /*Réalisations*/
+  #realisations-grid-container {
+    display: block;
+    /* grid-template-columns: auto;
+    row-gap: 27px;
+    margin-top: 1.625rem; */
+    width: 125px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    transform-origin: 50% 50% -171.7173387159px;
+  }
+
+  .grid-card {
+    width: 100%;
+    height: 191px;
+    opacity: 0.9;
+  }
+
+  #realisations-grid-container .grid-card:not(:first-of-type) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: 50% 50% -171.7173387159px;
+  }
+
+  #realisations-grid-container .grid-card:nth-child(2) {
+    transform: rotateY(0.6981317008rad);
+  }
+
+  #realisations-grid-container .grid-card:nth-child(3) {
+    transform: rotateY(1.3962634016rad);
+  }
+
+  #realisations-grid-container .grid-card:nth-child(4) {
+    transform: rotateY(2.0943951024rad);
+  }
+
+  #realisations-grid-container .grid-card:nth-child(5) {
+    transform: rotateY(2.7925268032rad);
+  }
+
+  #realisations-grid-container .grid-card:nth-child(6) {
+    transform: rotateY(3.490658504rad);
+  }
+
+  #realisations-grid-container .grid-card:nth-child(7) {
+    transform: rotateY(4.1887902048rad);
+  }
+
+  #realisations-grid-container .grid-card:nth-child(8) {
+    transform: rotateY(4.8869219056rad);
+  }
+
+  #realisations-grid-container .grid-card:nth-child(9) {
+    transform: rotateY(5.5850536064rad);
+  }
 }
