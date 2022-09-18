@@ -13,6 +13,7 @@ const gridCards = document.querySelectorAll('.grid-card');
 /*conteneur*/
 const menuGridCard = document.createElement('div');
 menuGridCard.classList.add('menu-grid-cards');
+menuGridCard.classList.add('carousel-cards');
 
 /*sous conteneur*/
 const submenuGridCard = document.createElement('div');
@@ -100,9 +101,16 @@ let imgOfModalClicked = null;
 // let allowClickChangeModalImg = true;
 
 /*FORMULAIRE DE CONTACT*/
-const formLink = document.getElementById('lien-formulaire-contact');
-const containerContactDivStyle = document.getElementById('container-contact-style');
+const formLink = document.getElementById('lien-formulaire-contact'),
+containerContactDivStyle = document.getElementById('container-contact-style');
 
+/*CAROUSSEL*/
+const contGridCards = document.getElementById('realisations-grid-container'),
+prevCarousel = document.querySelector('#nav-carousel .prev'),
+nextCarousel = document.querySelector('#nav-carousel .next'),
+numCards = gridCards.length,
+theta = 2 * Math.PI / numCards;
+let currCarCard = 0;
 /************************************************************************/
 
 fetch('site-pictures.json')
@@ -131,6 +139,8 @@ gridCards.forEach(item => {
         this.parentNode.insertBefore(menuGridCard, this);
         menuGridCard.appendChild(this);
         linkGithub.href = this.href;
+        /*effacement de la classe de la card pour le caroussel*/
+        this.classList.remove('carousel-cards');
     });
 });
 
@@ -193,6 +203,20 @@ linkPictures.addEventListener('click', function(e) {
     }
 });
 
+prevCarousel.addEventListener('click', prevCarouselFunc);
+
+function prevCarouselFunc() {
+    currCarCard--;
+    contGridCards.style.transform = `rotateY(${currCarCard * -theta}rad)`;
+}
+
+nextCarousel.addEventListener('click', nextCarouselFunc);
+
+function nextCarouselFunc() {
+    currCarCard++;
+    contGridCards.style.transform = `rotateY(${currCarCard * -theta}rad)`;
+}
+
 window.addEventListener('click', function (e) {
     const eTarget = e.target;
     if (imgOfModalClicked !== null && eTarget !== imgOfModalClicked) {
@@ -240,6 +264,7 @@ window.addEventListener('click', function (e) {
             modalIsOpen = false;
         }
     } else if (modalIsOpen === false && prevmenuGridCard !== null && eTarget !== targetGridCards && eTarget !== submenuGridCard && eTarget !== prevmenuGridCard && eTarget !== linkPictures && eTarget !== linkGithub) {
+        prevCard.classList.add('carousel-cards');
         prevmenuGridCard.replaceWith(prevCard);
         prevmenuGridCard = null;
     }

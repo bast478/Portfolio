@@ -116,6 +116,10 @@ h2, h4 {
   border-radius: 15px;
 }
 
+#nav-carousel {
+  display: none;
+}
+
 /*au clique*/
 .menu-grid-cards {
   position: relative;
@@ -420,6 +424,13 @@ h2, h4 {
   }
 }
 /**************************************************************************/
+@media (max-width: 1280px) {
+  .modal-content-pic-grid-card .img-clicked {
+    max-height: 81%;
+    max-width: 78%;
+  }
+}
+/************************************************/
 @media (max-width: 1120px) {
   /*Titre pro*/
   #titre-pro {
@@ -489,6 +500,18 @@ h2, h4 {
   }
   #submit {
     font-size: 1.4375rem;
+  }
+}
+/***********************************************************/
+@media (max-width: 820px) {
+  .modal-content-pic-grid-card {
+    padding: 1.25rem;
+  }
+  .modal-content-top-div {
+    width: 500px;
+  }
+  .modal-content-pic-grid-card .img-clicked {
+    max-width: 94%;
   }
 }
 /*********************************************************************************/
@@ -595,6 +618,24 @@ h2, h4 {
     column-gap: 28px;
     row-gap: 34px;
     margin-top: 2.125rem;
+  }
+  .modal-content-pic-grid-card {
+    padding: 1.25rem 7.1428571429%;
+  }
+  .modal-content-top-div {
+    width: 100%;
+    text-align: center;
+  }
+  .modal-content-description {
+    padding: 0;
+    margin-bottom: 1.8rem;
+  }
+  .modal-content-description h3 {
+    margin-top: 0.5rem;
+  }
+  .modal-content-pic-grid-card img {
+    max-width: 100%;
+    max-height: 280px;
   }
 }
 /*****************************************************/
@@ -758,48 +799,85 @@ h2, h4 {
   }
   /*Réalisations*/
   #realisations-grid-container {
-    display: block;
     width: 125px;
     transform-style: preserve-3d;
     transition: transform 0.5s;
     transform-origin: 50% 50% -171.7173387159px;
+    /*
+          .menu-grid-cards {
+      position: relative;
+    }
+
+    .sub-menu-grid-cards {
+      position: absolute;
+      background-color: rgba(0,0,0,0.5);
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 50px;
+    }
+    */
   }
   #realisations-grid-container .grid-card {
     width: 100%;
-    height: 191px;
+  }
+  #realisations-grid-container .carousel-cards {
+    width: 125px;
     opacity: 0.9;
     padding: 0 5px;
     box-sizing: border-box;
   }
-  #realisations-grid-container .grid-card:not(:first-of-type) {
+  #realisations-grid-container .carousel-cards .sub-menu-grid-cards {
+    width: 115px;
+  }
+  #realisations-grid-container .carousel-cards:not(:first-child) {
     position: absolute;
     left: 0;
     top: 0;
     transform-origin: 50% 50% -171.7173387159px;
   }
-  #realisations-grid-container .grid-card:nth-child(2) {
+  #realisations-grid-container .carousel-cards:nth-child(2) {
     transform: rotateY(0.6981317008rad);
   }
-  #realisations-grid-container .grid-card:nth-child(3) {
+  #realisations-grid-container .carousel-cards:nth-child(3) {
     transform: rotateY(1.3962634016rad);
   }
-  #realisations-grid-container .grid-card:nth-child(4) {
+  #realisations-grid-container .carousel-cards:nth-child(4) {
     transform: rotateY(2.0943951024rad);
   }
-  #realisations-grid-container .grid-card:nth-child(5) {
+  #realisations-grid-container .carousel-cards:nth-child(5) {
     transform: rotateY(2.7925268032rad);
   }
-  #realisations-grid-container .grid-card:nth-child(6) {
+  #realisations-grid-container .carousel-cards:nth-child(6) {
     transform: rotateY(3.490658504rad);
   }
-  #realisations-grid-container .grid-card:nth-child(7) {
+  #realisations-grid-container .carousel-cards:nth-child(7) {
     transform: rotateY(4.1887902048rad);
   }
-  #realisations-grid-container .grid-card:nth-child(8) {
+  #realisations-grid-container .carousel-cards:nth-child(8) {
     transform: rotateY(4.8869219056rad);
   }
-  #realisations-grid-container .grid-card:nth-child(9) {
+  #realisations-grid-container .carousel-cards:nth-child(9) {
     transform: rotateY(5.5850536064rad);
+  }
+  #nav-carousel {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+    column-gap: 35px;
+  }
+  #nav-carousel button {
+    font-size: 1.3125rem;
+    line-height: 1.125rem;
+    padding: 0 0.375rem;
+    background-color: transparent;
+    border: solid 1px #fff;
+    color: #fff;
   }
 }
 
