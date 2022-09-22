@@ -794,75 +794,56 @@ h2, h4 {
 }
 /*************************************************************/
 @media (max-width: 345px) {
-  #carousel {
+  .carousel-container {
     perspective: 500px;
+    /*Réalisations*/
   }
-  /*Réalisations*/
-  #realisations-grid-container {
+  .carousel-container #realisations-grid-container.carousel {
     width: 125px;
     transform-style: preserve-3d;
     transition: transform 0.5s;
     transform-origin: 50% 50% -171.7173387159px;
-    /*
-          .menu-grid-cards {
-      position: relative;
-    }
-
-    .sub-menu-grid-cards {
-      position: absolute;
-      background-color: rgba(0,0,0,0.5);
-      top: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      row-gap: 50px;
-    }
-    */
   }
-  #realisations-grid-container .grid-card {
+  .carousel-container #realisations-grid-container.carousel .grid-card {
     width: 100%;
   }
-  #realisations-grid-container .carousel-cards {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards {
     width: 125px;
     opacity: 0.9;
     padding: 0 5px;
     box-sizing: border-box;
   }
-  #realisations-grid-container .carousel-cards .sub-menu-grid-cards {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards .sub-menu-grid-cards {
     width: 115px;
   }
-  #realisations-grid-container .carousel-cards:not(:first-child) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:not(:first-child) {
     position: absolute;
     left: 0;
     top: 0;
     transform-origin: 50% 50% -171.7173387159px;
   }
-  #realisations-grid-container .carousel-cards:nth-child(2) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(2) {
     transform: rotateY(0.6981317008rad);
   }
-  #realisations-grid-container .carousel-cards:nth-child(3) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(3) {
     transform: rotateY(1.3962634016rad);
   }
-  #realisations-grid-container .carousel-cards:nth-child(4) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(4) {
     transform: rotateY(2.0943951024rad);
   }
-  #realisations-grid-container .carousel-cards:nth-child(5) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(5) {
     transform: rotateY(2.7925268032rad);
   }
-  #realisations-grid-container .carousel-cards:nth-child(6) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(6) {
     transform: rotateY(3.490658504rad);
   }
-  #realisations-grid-container .carousel-cards:nth-child(7) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(7) {
     transform: rotateY(4.1887902048rad);
   }
-  #realisations-grid-container .carousel-cards:nth-child(8) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(8) {
     transform: rotateY(4.8869219056rad);
   }
-  #realisations-grid-container .carousel-cards:nth-child(9) {
+  .carousel-container #realisations-grid-container.carousel .carousel-cards:nth-child(9) {
     transform: rotateY(5.5850536064rad);
   }
   #nav-carousel {

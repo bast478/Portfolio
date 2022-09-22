@@ -105,12 +105,14 @@ const formLink = document.getElementById('lien-formulaire-contact'),
 containerContactDivStyle = document.getElementById('container-contact-style');
 
 /*CAROUSSEL*/
-const contGridCards = document.getElementById('realisations-grid-container'),
+const contCarousel = document.querySelector('.carousel-container'),
+contGridCards = document.getElementById('realisations-grid-container'),
 prevCarousel = document.querySelector('#nav-carousel .prev'),
 nextCarousel = document.querySelector('#nav-carousel .next'),
 numCards = gridCards.length,
 theta = 2 * Math.PI / numCards;
-let currCarCard = 0;
+let currCarCard = 0,
+rotateContGridCards = '';
 /************************************************************************/
 
 fetch('site-pictures.json')
@@ -158,6 +160,9 @@ linkPictures.addEventListener('click', function(e) {
         pObjectifReal.appendChild(contentModalDescription[1]);
         pTechnologiesReal.appendChild(contentModalDescription[2]);
         menuGridCard.appendChild(modal);
+        // Enlever le transform du conteneur de carte qui est en caroussel et une class pour afficher le modal
+        contCarousel.classList.remove('carousel-container');
+        contGridCards.style.transform = 'none';
         if (window.innerWidth < 100) {
             categoryOfLinksOfPics = ['mobile'];
         } else {
@@ -207,14 +212,16 @@ prevCarousel.addEventListener('click', prevCarouselFunc);
 
 function prevCarouselFunc() {
     currCarCard--;
-    contGridCards.style.transform = `rotateY(${currCarCard * -theta}rad)`;
+    rotateContGridCards = `rotateY(${currCarCard * -theta}rad)`;
+    contGridCards.style.transform = rotateContGridCards;
 }
 
 nextCarousel.addEventListener('click', nextCarouselFunc);
 
 function nextCarouselFunc() {
     currCarCard++;
-    contGridCards.style.transform = `rotateY(${currCarCard * -theta}rad)`;
+    rotateContGridCards = `rotateY(${currCarCard * -theta}rad)`;
+    contGridCards.style.transform = rotateContGridCards;
 }
 
 window.addEventListener('click', function (e) {
@@ -260,6 +267,9 @@ window.addEventListener('click', function (e) {
                 modalContent.removeChild(el);
             }
             modalContentDivsImgs = [];
+            // Remettre le caroussel à sa position et une class pour afficher le caroussel
+            contCarousel.classList.add('carousel-container');
+            contGridCards.style.transform = rotateContGridCards;
             menuGridCard.removeChild(modal);
             modalIsOpen = false;
         }

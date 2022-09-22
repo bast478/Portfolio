@@ -869,63 +869,46 @@ body {
   }
   /*************************************************************/
   @media (max-width: 345px) {
-    #carousel {
-      perspective: $viewer-distance;
-    }
-    /*Réalisations*/
-    #realisations-grid-container {
-      width: $item-width;
-      transform-style: preserve-3d;
-      transition: transform 0.5s;
-      transform-origin: 50% 50% (-$apothem);
+    .carousel-container {
+        perspective: $viewer-distance;
+    
+        /*Réalisations*/
+        #realisations-grid-container.carousel {
+        width: $item-width;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+        transform-origin: 50% 50% (-$apothem);
 
-      /*
-        .menu-grid-cards {
-    position: relative;
-  }
-  
-  .sub-menu-grid-cards {
-    position: absolute;
-    background-color: rgba(0,0,0,0.5);
-    top: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: 50px;
-  }
-  */
-   .grid-card {
-    width: 100%;
-   }
-
-        .carousel-cards {
-            width: 125px;
-            opacity: 0.9;
-            padding: 0 math.div($item-separation, 2);
-            box-sizing: border-box;
-
-            .sub-menu-grid-cards {
-              width: 125px - $item-separation;
+            .grid-card {
+                width: 100%;
             }
 
-            &:not(:first-child) {
-                position: absolute;
-                left: 0;
-                top: 0;
-                transform-origin: 50% 50% (-$apothem);
-            }
+            .carousel-cards {
+                width: 125px;
+                opacity: 0.9;
+                padding: 0 math.div($item-separation, 2);
+                box-sizing: border-box;
 
-            @for $i from 2 through $n {
-                &:nth-child(#{$i}) {
-                    transform: rotateY(#{($i - 1) * $theta}rad);
+                .sub-menu-grid-cards {
+                    width: 125px - $item-separation;
+                }
+
+                &:not(:first-child) {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transform-origin: 50% 50% (-$apothem);
+                }
+
+                @for $i from 2 through $n {
+                    &:nth-child(#{$i}) {
+                        transform: rotateY(#{($i - 1) * $theta}rad);
+                    }
                 }
             }
         }
     }
+
 
     #nav-carousel {
       display: flex;
