@@ -869,14 +869,22 @@ body {
   }
   /*************************************************************/
   @media (max-width: 345px) {
+    main {
+      min-height: 100vh;
+      position: relative;
+    }
+
     .carousel-container {
         perspective: $viewer-distance;
     
         /*Réalisations*/
+        #realisations-grid-container.transition {
+          transition: transform 0.5s;
+        }
+
         #realisations-grid-container.carousel {
         width: $item-width;
         transform-style: preserve-3d;
-        transition: transform 0.5s;
         transform-origin: 50% 50% (-$apothem);
 
             .grid-card {
@@ -924,5 +932,18 @@ body {
           border: solid 1px #fff;
           color: #fff;
         }
+    }
+
+    #container-contact {
+      z-index: 1;
+    }
+
+    #container-contact-style.show-form {
+      height: 628px;
+    }
+
+    #vagues {
+      position: absolute;
+      bottom: 0;
     }
 }

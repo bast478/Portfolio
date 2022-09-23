@@ -160,9 +160,11 @@ linkPictures.addEventListener('click', function(e) {
         pObjectifReal.appendChild(contentModalDescription[1]);
         pTechnologiesReal.appendChild(contentModalDescription[2]);
         menuGridCard.appendChild(modal);
-        // Enlever le transform du conteneur de carte qui est en caroussel et une class pour afficher le modal
+        // Afficher le modal
         contCarousel.classList.remove('carousel-container');
         contGridCards.style.transform = 'none';
+        contGridCards.classList.remove('transition');
+        //contGridCards.style.transition = 'none';
         if (window.innerWidth < 100) {
             categoryOfLinksOfPics = ['mobile'];
         } else {
@@ -214,6 +216,9 @@ function prevCarouselFunc() {
     currCarCard--;
     rotateContGridCards = `rotateY(${currCarCard * -theta}rad)`;
     contGridCards.style.transform = rotateContGridCards;
+    if (!contGridCards.classList.contains('transition')) {
+        contGridCards.classList.add('transition');
+    }
 }
 
 nextCarousel.addEventListener('click', nextCarouselFunc);
@@ -222,6 +227,9 @@ function nextCarouselFunc() {
     currCarCard++;
     rotateContGridCards = `rotateY(${currCarCard * -theta}rad)`;
     contGridCards.style.transform = rotateContGridCards;
+    if (!contGridCards.classList.contains('transition')) {
+        contGridCards.classList.add('transition');
+    }
 }
 
 window.addEventListener('click', function (e) {
@@ -267,9 +275,10 @@ window.addEventListener('click', function (e) {
                 modalContent.removeChild(el);
             }
             modalContentDivsImgs = [];
-            // Remettre le caroussel à sa position et une class pour afficher le caroussel
+            // Afficher caroussel
             contCarousel.classList.add('carousel-container');
             contGridCards.style.transform = rotateContGridCards;
+            /*******/
             menuGridCard.removeChild(modal);
             modalIsOpen = false;
         }
