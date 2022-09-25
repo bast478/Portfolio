@@ -18,6 +18,13 @@ body {
     background-color: #0E0F3B;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+  }
+
+  #main-content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
   
@@ -484,6 +491,11 @@ body {
     #realisations-grid-container {
       margin-top: 3.125rem;
     }
+
+    /*Formulaire*/
+    #container-contact-style.show-form {
+	    height: 407px;
+    }
   }
   /*************************************************************************/
   @media (max-width: 850px) {
@@ -612,6 +624,11 @@ body {
     .grid-card {
       width: 130px;
     }
+
+    /*Formaulaire*/
+    #container-contact-style.show-form {
+      height: 422px;
+    }
   }
   /*****************************************************************/
   @media (max-width: 620px) {
@@ -619,6 +636,11 @@ body {
       #realisations-grid-container {
         column-gap: 40px;
         row-gap: 43px;
+      }
+
+      /*Formulaire*/
+      #container-contact-style.show-form {
+        height: 428px;
       }
   }
   /*********************************************************************/
@@ -800,6 +822,10 @@ body {
   /******************************************************/
   @media (max-width: 405px) {
     /*Formulaire*/
+    #container-contact-style.show-form {
+      height: 546px;
+    }
+
     #formulaire-titre {
       margin: 4.125rem 0 1.1875rem;
     }
@@ -869,10 +895,6 @@ body {
   }
   /*************************************************************/
   @media (max-width: 345px) {
-    main {
-      min-height: 100vh;
-      position: relative;
-    }
 
     .carousel-container {
         perspective: $viewer-distance;
@@ -934,16 +956,8 @@ body {
         }
     }
 
-    #container-contact {
-      z-index: 1;
-    }
-
+    /*Formulaire*/
     #container-contact-style.show-form {
-      height: 628px;
-    }
-
-    #vagues {
-      position: absolute;
-      bottom: 0;
+      height: 548px;
     }
 }
