@@ -4,6 +4,8 @@ body {
 }
 
 main {
+  background-image: radial-gradient(circle at center center, #444cf7, #e5e5f7), repeating-radial-gradient(circle at center center, #444cf7, #444cf7, 10px, transparent 20px, transparent 10px);
+  background-blend-mode: multiply;
   background-color: #0E0F3B;
   display: flex;
   flex-direction: column;
@@ -879,7 +881,7 @@ h2, h4 {
   #nav-carousel button {
     font-size: 1.3125rem;
     line-height: 1.125rem;
-    padding: 0 0.375rem;
+    padding: 0 0.375rem 0.1875rem;
     background-color: transparent;
     border: solid 1px #fff;
     color: #fff;
